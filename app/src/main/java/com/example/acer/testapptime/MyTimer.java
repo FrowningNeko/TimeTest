@@ -108,7 +108,7 @@ public class MyTimer extends Service {
     }
 
     public void Notif(){
-                Intent intent = new Intent(MyTimer.this, Notif.class);
+        Intent intent = new Intent(MyTimer.this, Notif.class);
         startService(intent);
     }
 
