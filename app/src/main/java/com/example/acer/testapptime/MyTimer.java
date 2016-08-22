@@ -1,8 +1,6 @@
 package com.example.acer.testapptime;
 
 import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -11,8 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.SystemClock;
-import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,32 +19,27 @@ public class MyTimer extends Service {
     int score = 0;
     int timeMax = 10000;
     long realTime;
-    long timeWork = 10000;
-    long timeEnd = 0;
-    long timeRelax = 5000;
-    static int i = 0;
     public static Handler mHandler;
-    PendingIntent pIntent3;
+    PendingIntent pIntentRelax;
     public static final String SP_SETTING = "setting";
     public static final String SP_SCORE = "score";
     public static final String SP_LVL = "LVL";
     public static final String SP_COIN = "Coin";
     public static final String SP_TIME = "Time";
     SharedPreferences sharedPreferences;
-   AlarmManager myAlarm;
+    AlarmManager  myAlarm;
+    PendingIntent pIntentWork;
 
     @Override
     public void onCreate() {
         Toast.makeText(this, "Игра началась!", Toast.LENGTH_SHORT).show();
-        Intent intent1 = new Intent(MyTimer.this, CloseNotif.class);
-        Intent intent2 = new Intent(MyTimer.this, Alarum.class);
-        PendingIntent pIntent2 = PendingIntent.getService(MyTimer.this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-        pIntent3 = PendingIntent.getBroadcast(MyTimer.this, 0, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
-
+        Intent intent2 = new Intent(MyTimer.this, AlarumRelax.class);
+        pIntentRelax = PendingIntent.getBroadcast(MyTimer.this, 0, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
+        Intent intentWork = new Intent(MyTimer.this, AlarumWork.class);
+        pIntentWork = PendingIntent.getBroadcast(MyTimer.this, 0, intentWork, PendingIntent.FLAG_CANCEL_CURRENT);
         sharedPreferences = getSharedPreferences(SP_SETTING, Context.MODE_PRIVATE);
-        myAlarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         score = sharedPreferences.getInt(SP_SCORE, 0);
-
+        myAlarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -66,7 +57,7 @@ public class MyTimer extends Service {
                             SharedPreferences.Editor edit = sharedPreferences.edit();
                             edit.putInt("score", score);
                             edit.apply();
-                        myAlarm();
+                        myAlarm(myAlarm, pIntentRelax, pIntentWork);
                         }
                         else{
                             levelUp();
@@ -79,32 +70,22 @@ public class MyTimer extends Service {
             }
             }
         };
-        myAlarm();
-
+        myAlarm(myAlarm, pIntentRelax, pIntentWork);
+        Notif();
     }
 
 
-    public void myAlarm(){
+    public void myAlarm(AlarmManager myAlarm, PendingIntent pIntentRelax, PendingIntent pIntentWork){
         if(inspec==1){
             realTime = System.currentTimeMillis();
-            timeMax = (int)(timeWork);
-            myAlarm.set(AlarmManager.RTC_WAKEUP, realTime+timeWork, pIntent3);
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            timeEnd = realTime+timeWork;
-            edit.putLong(SP_TIME, timeEnd);
-            edit.apply();
+            long timeWork = 10000;
+            myAlarm.set(AlarmManager.RTC_WAKEUP, realTime+timeWork, pIntentRelax);
         }
         else{
-            Log.e("MyTimer", "Я ТУТ!");
             realTime = System.currentTimeMillis();
-            timeMax = (int)(timeRelax);
-            myAlarm.set(AlarmManager.RTC_WAKEUP, realTime+timeRelax, pIntent3);
-            SharedPreferences.Editor edit = sharedPreferences.edit();
-            timeEnd = realTime+timeRelax;
-            edit.putLong(SP_TIME, timeEnd);
-            edit.apply();
+            long timeRelax = 5000;
+            myAlarm.set(AlarmManager.RTC_WAKEUP, realTime+timeRelax, pIntentWork);
         }
-        Notif();
     }
 
     public void Notif(){
@@ -140,10 +121,9 @@ public class MyTimer extends Service {
     {
         Toast.makeText(this, "Служба остановлена",
                 Toast.LENGTH_SHORT).show();
-        Log.e("MyTimer", "Я...Я умер Q_Q");
         stopForeground(true);
-        myAlarm.cancel(pIntent3);
-        i = timeMax;//Аве костылям!!!
+        AlarmManager  myAlarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        myAlarm.cancel(pIntentRelax);
         MainActivity.start.setBackgroundResource(R.drawable.start);
         MainActivity.relax.setEnabled(false);
         super.onDestroy();

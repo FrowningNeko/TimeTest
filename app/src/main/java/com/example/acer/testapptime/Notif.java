@@ -44,14 +44,15 @@ public class Notif extends Service {
     public void ShowNotifTimer(final NotificationManager mNotifyManager, final NotificationCompat.Builder mBuilder){
         final Timer timer = new Timer();
         MyTimer myTimer = new MyTimer();
-        timeMax = myTimer.timeMax;
-        inspec = myTimer.inspec;
+        inspec = MyTimer.inspec;
         realTime = System.currentTimeMillis();
-        if(MyTimer.inspec == 1){
+        if(inspec == 1){
             timeEnd = realTime + TIME_WORK;
+            timeMax = (int)TIME_WORK;
         }
         else{
             timeEnd = realTime + TIME_RELAX;
+            timeMax = (int)TIME_RELAX;
         }
         timer.schedule(new TimerTask() {
             @Override
