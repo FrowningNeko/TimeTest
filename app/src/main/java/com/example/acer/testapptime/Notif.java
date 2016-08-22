@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,12 +20,13 @@ public class Notif extends Service {
     int inspec;
     long TIME_WORK = 10000;
     long TIME_RELAX = 5000;
+    static Timer timer;
 
     NotificationManager mNotifyManager;
 
     @Override
     public void onCreate(){
-        Intent intent1 = new Intent(Notif.this, CloseNotif.class);
+        Intent intent1 = new Intent(Notif.this, CloseApp.class);
         PendingIntent pIntent2 = PendingIntent.getService(Notif.this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification notification;
         mNotifyManager =
@@ -38,12 +38,11 @@ public class Notif extends Service {
                 .addAction(0, "Остановить", pIntent2);
         notification = mBuilder.build();
         startForeground(777, notification);
-        ShowNotifTimer(mNotifyManager, mBuilder);
+        showNotifTimer(mNotifyManager, mBuilder);
     }
 
-    public void ShowNotifTimer(final NotificationManager mNotifyManager, final NotificationCompat.Builder mBuilder){
-        final Timer timer = new Timer();
-        MyTimer myTimer = new MyTimer();
+    public void showNotifTimer(final NotificationManager mNotifyManager, final NotificationCompat.Builder mBuilder){
+        timer = new Timer();
         inspec = MyTimer.inspec;
         realTime = System.currentTimeMillis();
         if(inspec == 1){
@@ -72,6 +71,9 @@ public class Notif extends Service {
             stopSelf();
             }}}, 0, 1000);//изменить на 30000 после релиза
         }
+
+
+
 
     @Override
     public IBinder onBind(Intent intent) {

@@ -2,19 +2,18 @@ package com.example.acer.testapptime;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.IBinder;
 import android.os.Vibrator;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 
 public class AlarumWork extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(1000);
-        Intent intent2 = new Intent(context, CloseNotif.class);
+        Intent intent2 = new Intent(context, CloseApp.class);
         PendingIntent pIntent2 = PendingIntent.getService(context, 0, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
         NotifWork(context, pIntent2);
     }
@@ -35,8 +34,8 @@ public class AlarumWork extends BroadcastReceiver {
             mBuilder.setContentText("Поздравляю! Вы получили новый уровень!")
                     .setProgress(0, 0, false);
             mNotifyManager.notify(778, mBuilder.build());
-            sendHandlerMessage(context);
         }
+        sendHandlerMessage(context);
     }
 
     public void sendHandlerMessage(Context context) {
@@ -51,6 +50,7 @@ public class AlarumWork extends BroadcastReceiver {
     public void startRelax(Context context){
         Intent intent1 = new Intent(context, Relax.class);
         context.startService(intent1);
+        Log.e("AlarumWork", "Дошёл");
         }
     }
 

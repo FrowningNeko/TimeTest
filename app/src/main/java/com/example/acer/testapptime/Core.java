@@ -37,7 +37,7 @@ public class Core extends AppCompatActivity {
         long TIME_RELAX = 5000;
         long realTime = SystemClock.elapsedRealtime();
         if(MyTimer.inspec == 1){
-        timeEnd = realTime + TIME_WORK;
+            timeEnd = realTime + TIME_WORK;
         }
         else{
             timeEnd = realTime + TIME_RELAX;

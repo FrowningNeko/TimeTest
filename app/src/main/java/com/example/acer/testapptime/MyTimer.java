@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.util.Log;
 import android.widget.Toast;
 
 public class MyTimer extends Service {
@@ -17,7 +16,6 @@ public class MyTimer extends Service {
     public static int inspec = 1; //Переход от работы к отдыху и наборот
    static int inspecCycle = 0; //Проверка количества выполнений таймера
     int score = 0;
-    int timeMax = 10000;
     long realTime;
     public static Handler mHandler;
     PendingIntent pIntentRelax;
@@ -27,7 +25,7 @@ public class MyTimer extends Service {
     public static final String SP_COIN = "Coin";
     public static final String SP_TIME = "Time";
     SharedPreferences sharedPreferences;
-    AlarmManager  myAlarm;
+    static AlarmManager  myAlarm;
     PendingIntent pIntentWork;
 
     @Override
@@ -122,8 +120,6 @@ public class MyTimer extends Service {
         Toast.makeText(this, "Служба остановлена",
                 Toast.LENGTH_SHORT).show();
         stopForeground(true);
-        AlarmManager  myAlarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        myAlarm.cancel(pIntentRelax);
         MainActivity.start.setBackgroundResource(R.drawable.start);
         MainActivity.relax.setEnabled(false);
         super.onDestroy();

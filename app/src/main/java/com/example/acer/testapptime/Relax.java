@@ -41,6 +41,11 @@ public class Relax extends Service {
     public void NotifRelax(){
         Intent intent = new Intent(Relax.this, Notif.class);
         startService(intent);
+        StartTimer();
+    }
+    public void StartTimer(){
+        Core core = new Core();
+        core.Timer();
         stopSelf();
     }
 

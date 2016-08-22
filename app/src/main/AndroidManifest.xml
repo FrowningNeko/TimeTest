@@ -30,7 +30,7 @@
         <activity android:name=".Level" />
 
         <service
-            android:name=".CloseNotif"
+            android:name=".CloseApp"
             android:enabled="true"
             android:exported="true" />
         <service

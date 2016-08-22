@@ -16,13 +16,13 @@ public class AlarumRelax extends BroadcastReceiver {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(1000);
         Intent intent1 = new Intent(context, Relax.class);
-        Intent intent2 = new Intent(context, CloseNotif.class);
+        Intent intent2 = new Intent(context, CloseApp.class);
         PendingIntent pIntentRelax = PendingIntent.getService(context, 0, intent1, 0);
         PendingIntent pIntentClose = PendingIntent.getService(context, 0, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
-        NotifRelax(context, pIntentRelax, pIntentClose);
+        notifRelax(context, pIntentRelax, pIntentClose);
     }
 
-    public void NotifRelax(Context context, PendingIntent pIntentRelax, PendingIntent pIntentClose) {
+    public void notifRelax(Context context, PendingIntent pIntentRelax, PendingIntent pIntentClose) {
         NotificationManager mNotifyManager;
         NotificationCompat.Builder mBuilder;
         mNotifyManager =
