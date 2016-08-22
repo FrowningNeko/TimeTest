@@ -13,15 +13,26 @@ public class CloseApp extends Service {
     public void onCreate() {
         Log.e("CloseApp", "WAT?!");
         Notif.timer.cancel();
+        Core.timer.cancel();
+        closeAlarm();
+    }
+    public void closeAlarm() {
+
         Intent intent2 = new Intent(CloseApp.this, AlarumRelax.class);
         PendingIntent pIntentRelax = PendingIntent.getBroadcast(CloseApp.this, 0, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
         Intent intentWork = new Intent(CloseApp.this, AlarumWork.class);
         PendingIntent pIntentWork = PendingIntent.getBroadcast(CloseApp.this, 0, intentWork, PendingIntent.FLAG_CANCEL_CURRENT);
         MyTimer.myAlarm.cancel(pIntentRelax);
         MyTimer.myAlarm.cancel(pIntentWork);
+        closeService();
+    }
+    public void closeService() {
         stopService(new Intent(CloseApp.this, MyTimer.class));
         stopService(new Intent(CloseApp.this, Notif.class));
-        Core.timer.cancel();
+        closeNotif();
+    }
+
+    public void closeNotif(){
         NotificationManager mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         mNotifyManager.cancel(777);
         mNotifyManager.cancel(778);
