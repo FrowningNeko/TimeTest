@@ -1,6 +1,7 @@
 package com.example.acer.testapptime;
 
 
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -12,9 +13,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Random;
+
+public class MainActivity extends Activity {
 
     public static ImageButton start;
     Button level;
@@ -23,20 +28,27 @@ public class MainActivity extends AppCompatActivity {
     public static int inspec = 0;
     Intent intent;
     SharedPreferences sharedPreferences;
+    static ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          intent = new Intent(MainActivity.this, MyTimer.class);
-        start = (ImageButton)findViewById(R.id.button);
         timeMin = (TextView)findViewById(R.id.textView2);
+        TextView txTips = (TextView)findViewById(R.id.textView17);
+        String tips[] = getResources().getStringArray(R.array.Tips);
+        int randomTip = new Random().nextInt(21);
+        txTips.setText(tips[randomTip]);
+        start = (ImageButton)findViewById(R.id.button);
         relax = (Button)findViewById(R.id.button2);
         level = (Button)findViewById(R.id.button3);
         relax.setEnabled(false);
+
+        progressBar = (ProgressBar)findViewById(R.id.progressBar);
         sharedPreferences = getSharedPreferences("Setting", Context.MODE_PRIVATE);
         if(!isMyServiceRunning(MyTimer.class)){
-            start.setBackgroundResource(R.drawable.start);
+            start.setBackgroundResource(R.drawable.start2);
             start.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -48,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         else{
-            start.setBackgroundResource(R.drawable.stop);
+            start.setBackgroundResource(R.drawable.stop2);
             inspec = MyTimer.inspec;
             if(inspec==2){
                 relax.setEnabled(true);
@@ -80,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void ButtonStart(){
-        start.setBackgroundResource(R.drawable.start);
+        start.setBackgroundResource(R.drawable.start2);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,11 +103,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void ButtonStop(){
-        start.setBackgroundResource(R.drawable.stop);
+        start.setBackgroundResource(R.drawable.stop2);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stopService(new Intent(MainActivity.this, MyTimer.class));
+                startService(new Intent(MainActivity.this, CloseApp.class));
                 ButtonStart();
                 relax.setEnabled(false);
             }
@@ -115,6 +127,14 @@ public class MainActivity extends AppCompatActivity {
     public void MyTimer(){
         Core core = new Core();
         core.Timer();
+       loadScore();
+    }
+
+    public void loadScore(){
+        sharedPreferences = getSharedPreferences("Setting", Context.MODE_PRIVATE);
+        int score = sharedPreferences.getInt("Score", 0);
+        TextView strScore = (TextView)findViewById(R.id.textView3);
+        strScore.setText(""+score);
     }
 
     @Override
@@ -126,12 +146,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }

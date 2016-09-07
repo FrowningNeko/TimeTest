@@ -1,28 +1,21 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:background="@drawable/background">
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:background="@color/background">
 
     <ImageButton
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:text="Старт"
-        android:background="@drawable/start"
+        android:background="@drawable/start2"
         android:id="@+id/button"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Осталось"
-        android:textColor="@color/white"
-        android:textSize="25sp"
-        android:id="@+id/textView"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <TextView
@@ -32,7 +25,9 @@
         android:textColor="@color/white"
         android:textSize="25sp"
         android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
+        android:layout_marginTop="83dp"
+        android:gravity="center_horizontal"
+        android:layout_alignTop="@+id/progressBar"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -71,15 +66,29 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        android:background="@drawable/circle_shape"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:progress="65"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="Тут должен быть мотивирующий текст, но он пропал. Не паникуйте, текст уже объявлен в розыск!"
         android:textColor="@color/white"
         android:id="@+id/textView17"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"/>
 
 </RelativeLayout>
