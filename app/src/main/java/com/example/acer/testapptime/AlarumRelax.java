@@ -28,6 +28,7 @@ public class AlarumRelax extends BroadcastReceiver {
         mNotifyManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mBuilder = new NotificationCompat.Builder(context);
+        mNotifyManager.cancel(777);
         mBuilder.setContentTitle("TestAppTime")//Заменить на название приложения
                 .setSmallIcon(R.drawable.icon)
                 .addAction(0, "Начать отдых", pIntentRelax)
@@ -36,23 +37,14 @@ public class AlarumRelax extends BroadcastReceiver {
             mBuilder.setContentText("Пора отдохнуть!");
             mNotifyManager.notify(778, mBuilder.build());
         } else {
-            mBuilder.setContentText("Поздравляю! Вы получили новый уровень!")
-                    .setProgress(0, 0, false);
+            mBuilder.setContentText("Поздравляю! Вы получили новый уровень!");
             mNotifyManager.notify(778, mBuilder.build());
         }
         sendHandlerMessage();
     }
 
     public void sendHandlerMessage(){
-            if(MyTimer.inspec == 1){
-                MyTimer.mHandler.sendEmptyMessage(2);
-            }
-            else{
-                if(MyTimer.inspec == 2){
-                    MyTimer.mHandler.sendEmptyMessage(3);
-                }
-
-        }
+        MyTimer.mHandler.sendEmptyMessage(2);
     }
 }
 

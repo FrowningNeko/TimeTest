@@ -12,8 +12,7 @@ public class CloseApp extends Service {
     @Override
     public void onCreate() {
         Log.e("CloseApp", "WAT?!");
-        Notif.timer.cancel();
-        Core.timer.cancel();
+        MyTimer.timer.cancel();
         closeAlarm();
     }
     public void closeAlarm() {
@@ -28,7 +27,6 @@ public class CloseApp extends Service {
     }
     public void closeService() {
         stopService(new Intent(CloseApp.this, MyTimer.class));
-        stopService(new Intent(CloseApp.this, Notif.class));
         closeNotif();
     }
 

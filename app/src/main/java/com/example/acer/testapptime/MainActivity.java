@@ -6,6 +6,10 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.PowerManager;
+import android.os.SystemClock;
+import android.preference.ListPreference;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +33,8 @@ public class MainActivity extends Activity {
     Intent intent;
     SharedPreferences sharedPreferences;
     static ProgressBar progressBar;
+    static TextView strScore;
+    PowerManager.WakeLock wakeLock;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +59,11 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     startService(intent);
-                    MyTimer();
+//                    PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+//                   wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+//                            "My wakelook");
+//                    wakeLock.acquire();
+                    loadScore();
                     ButtonStop();
                 }
             });
@@ -70,6 +80,7 @@ public class MainActivity extends Activity {
                 public void onClick(View v) {
                     stopService(new Intent(MainActivity.this, MyTimer.class));
                     ButtonStart();
+                    wakeLock.release();
                 }
             });
         }
@@ -97,7 +108,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startService(intent);
-                MyTimer();
+                loadScore();
                 ButtonStop();
             }
         });
@@ -124,17 +135,9 @@ public class MainActivity extends Activity {
         return false;
     }
 
-    public void MyTimer(){
-        Core core = new Core();
-        core.Timer();
-       loadScore();
-    }
-
     public void loadScore(){
-        sharedPreferences = getSharedPreferences("Setting", Context.MODE_PRIVATE);
-        int score = sharedPreferences.getInt("Score", 0);
-        TextView strScore = (TextView)findViewById(R.id.textView3);
-        strScore.setText(""+score);
+        strScore = (TextView)findViewById(R.id.textView3);
+        strScore.setText("4");
     }
 
     @Override
@@ -150,9 +153,11 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            startActivity(new Intent(MainActivity.this, Settings.class));
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
 }

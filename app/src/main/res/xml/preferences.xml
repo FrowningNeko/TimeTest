@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+        <PreferenceCategory
+            android:title="Настройки">
+            <ListPreference
+                android:title="Время работы"
+                android:summary="Тут можно настроить время работы"
+                android:key="listWork"
+                android:defaultValue="25"
+                android:entries="@array/listWorkArray"
+                android:entryValues="@array/listWorkValues" />
+            <ListPreference
+                android:title="Время работы"
+                android:summary="Тут можно настроить время отдыха"
+                android:key="listRelax"
+                android:defaultValue="5"
+                android:entries="@array/listRelaxArray"
+                android:entryValues="@array/listRelaxValues" />
+            <CheckBoxPreference
+                android:title="Ручной переход от отдыха к работе"
+                android:defaultValue="false"
+                android:key="workAuto" />
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:title="О приложении">
+            <Preference
+                android:title="О приложении"
+                android:summary="This works almost like a button"
+                android:key="customPref" />
+            <Preference
+                android:title="FAQ"
+                android:summary="This works almost like a button"
+                android:key="customFAQ" />
+        </PreferenceCategory>
+    </PreferenceScreen>

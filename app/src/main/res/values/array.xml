@@ -24,4 +24,34 @@
         <item>Если ты не решишься на это сегодня, завтра будет таким же, как и вчера. Жми уже на кнопку внизу и начинай работать!</item>
     </string-array>
 
+    <string-array name="listWorkArray">
+        <item>25 минут</item>
+        <item>45 минут</item>
+        <item>1 час</item>
+        <item>1 час и 30 минут</item>
+        <item>TEST</item>
+    </string-array>
+
+    <string-array name="listWorkValues">
+        <item>25</item>
+        <item>45</item>
+        <item>60</item>
+        <item>90</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="listRelaxArray">
+        <item>5 минут</item>
+        <item>10 минут</item>
+        <item>15 минут</item>
+        <item>30 минут</item>
+        <item>TEST</item>
+    </string-array>
+
+    <string-array name="listRelaxValues">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>30</item>
+        <item>1</item>
+    </string-array>
 </resources>
