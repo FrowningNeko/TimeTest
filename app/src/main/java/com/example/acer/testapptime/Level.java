@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -38,13 +39,15 @@ public class Level extends Activity {
         CoinSpend = (TextView)findViewById(R.id.textView16);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         tvLevel = (TextView)findViewById(R.id.textView8);
+        ImageView img = (ImageView)findViewById(R.id.imageView);
 
         sharedPreferences = getSharedPreferences(SP_SETTING, Context.MODE_PRIVATE);
         iScore = sharedPreferences.getInt(SP_SCORE, 0);
         tvScore.setText(String.valueOf(iScore));
+        int level = sharedPreferences.getInt(SP_LVL, 1);
         tvCoin.setText(String.valueOf(sharedPreferences.getInt(SP_COIN, 0)));
-        tvLevel.setText(String.valueOf(sharedPreferences.getInt(SP_LVL, 0)));
-        tvLevelBar.setText(String.valueOf(sharedPreferences.getInt(SP_LVL, 0)));
+        tvLevel.setText(String.valueOf(level));
+        tvLevelBar.setText(String.valueOf(level));
 //        tvCoinSpend.setText(String.valueOf(sharedPreferences.getInt(SP_SCORE, 444)));
         tvScoreFail.setText(String.valueOf(sharedPreferences.getInt(SP_SCORE_FAIL, 444)));
 
@@ -57,6 +60,15 @@ public class Level extends Activity {
                 break;
             case 3:
                 progressBar.setProgress(75);
+                break;
+        }
+
+        switch (level){
+            case 1-4:
+                img.setBackgroundResource(R.drawable.lvl1);
+                break;
+            case 5-9:
+                img.setBackgroundResource(R.drawable.lvl2);
                 break;
         }
 

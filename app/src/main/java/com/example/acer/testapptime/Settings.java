@@ -2,6 +2,7 @@ package com.example.acer.testapptime;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.app.Activity;
 import android.preference.Preference;
@@ -14,6 +15,7 @@ public class Settings extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
+        getActionBar().setIcon(new ColorDrawable(0));
 //        Preference customPref = (Preference) findPreference("customPref");
 //        customPref
 //                .setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

@@ -9,12 +9,12 @@
     tools:context=".MainActivity"
     android:background="@color/background">
 
-    <ImageButton
-        android:layout_width="50dp"
+    <Button
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:text="Старт"
-        android:background="@drawable/start2"
-        android:id="@+id/button"
+        android:background="@color/orange"
+        android:id="@+id/btMain"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
@@ -30,14 +30,6 @@
         android:layout_alignTop="@+id/progressBar"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Начать отдых"
-        android:id="@+id/button2"
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,8 +37,8 @@
         android:textSize="15sp"
         android:textColor="@color/white"
         android:id="@+id/textView3"
-        android:layout_above="@+id/button2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/btMain" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -90,5 +82,14 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shop"
+        android:id="@+id/shop"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

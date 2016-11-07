@@ -25,16 +25,15 @@ import java.util.Random;
 
 public class MainActivity extends Activity {
 
-    public static ImageButton start;
+
+    public static Button btMain;
     Button level;
-    public static Button relax;
     public static TextView timeMin;
-    public static int inspec = 0;
     Intent intent;
     SharedPreferences sharedPreferences;
     static ProgressBar progressBar;
     static TextView strScore;
-    PowerManager.WakeLock wakeLock;
+    Button shop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,52 +45,12 @@ public class MainActivity extends Activity {
         String tips[] = getResources().getStringArray(R.array.Tips);
         int randomTip = new Random().nextInt(21);
         txTips.setText(tips[randomTip]);
-        start = (ImageButton)findViewById(R.id.button);
-        relax = (Button)findViewById(R.id.button2);
+        btMain = (Button)findViewById(R.id.btMain);
         level = (Button)findViewById(R.id.button3);
-        relax.setEnabled(false);
+        shop = (Button)findViewById(R.id.shop);
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         sharedPreferences = getSharedPreferences("Setting", Context.MODE_PRIVATE);
-        if(!isMyServiceRunning(MyTimer.class)){
-            start.setBackgroundResource(R.drawable.start2);
-            start.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startService(intent);
-//                    PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-//                   wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-//                            "My wakelook");
-//                    wakeLock.acquire();
-                    loadScore();
-                    ButtonStop();
-                }
-            });
-
-        }
-        else{
-            start.setBackgroundResource(R.drawable.stop2);
-            inspec = MyTimer.inspec;
-            if(inspec==2){
-                relax.setEnabled(true);
-            }
-            start.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    stopService(new Intent(MainActivity.this, MyTimer.class));
-                    ButtonStart();
-                    wakeLock.release();
-                }
-            });
-        }
-
-        relax.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            MyTimer.mHandler.sendEmptyMessage(4);
-                relax.setEnabled(false);
-            }
-        });
         level.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,41 +58,79 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+        shop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Shop.class));
+            }
+        });
 
+        Tools();
+    }
+
+    public void Tools(){
+        switch (MyTimer.flag){
+            case 1:
+                ButtonStop();
+                break;
+            case 2: ButtonRelax();
+                break;
+            case 3:ButtonWork();
+                break;
+            default:
+                ButtonStart();
+                break;
+        }
     }
 
     public void ButtonStart(){
-        start.setBackgroundResource(R.drawable.start2);
-        start.setOnClickListener(new View.OnClickListener() {
+        btMain.setText("Старт");
+        btMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startService(intent);
+                startService(new Intent(MainActivity.this, MyTimer.class));
                 loadScore();
-                ButtonStop();
+                MyTimer.flag = 1;
+                Tools();
             }
         });
     }
     public void ButtonStop(){
-        start.setBackgroundResource(R.drawable.stop2);
-        start.setOnClickListener(new View.OnClickListener() {
+        btMain.setText("Стоп");
+        btMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startService(new Intent(MainActivity.this, CloseApp.class));
-                ButtonStart();
-                relax.setEnabled(false);
+                MyTimer.flag = 0;
+                Tools();
             }
         });
     }
 
-    private boolean isMyServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                return true;
+    public void ButtonWork(){
+        btMain.setText("Приступить к работе");
+        btMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyTimer.mHandler.sendEmptyMessage(8);
+                MyTimer.flag = 1;
+                Tools();
             }
-        }
-        return false;
+        });
     }
+
+    public void ButtonRelax(){
+        btMain.setText("Начать отдых");
+        btMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyTimer.mHandler.sendEmptyMessage(8);
+                MyTimer.flag = 1;
+                Tools();
+            }
+        });
+    }
+
 
     public void loadScore(){
         strScore = (TextView)findViewById(R.id.textView3);
@@ -158,6 +155,12 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume(){
+        Tools();
+        super.onResume();
     }
 
 }

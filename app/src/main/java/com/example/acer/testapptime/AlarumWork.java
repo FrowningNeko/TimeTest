@@ -18,13 +18,11 @@ public class AlarumWork extends BroadcastReceiver {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(1000);
         Intent intentClose = new Intent(context, CloseApp.class);
-        Intent intentWork = new Intent(context, Work.class);
         PendingIntent pIntentClose = PendingIntent.getService(context, 0, intentClose, PendingIntent.FLAG_UPDATE_CURRENT);
-        PendingIntent pIntentWork = PendingIntent.getService(context, 0, intentWork, 0);
-        NotifWork(context, pIntentClose, pIntentWork);
+        NotifWork(context, pIntentClose);
     }
 
-    public void NotifWork(Context context, PendingIntent pIntentClose, PendingIntent pIntentWork) {
+    public void NotifWork(Context context, PendingIntent pIntentClose) {
         NotificationManager mNotifyManager;
         NotificationCompat.Builder mBuilder;
         mNotifyManager =
@@ -33,13 +31,8 @@ public class AlarumWork extends BroadcastReceiver {
         mNotifyManager.cancel(777);
         mBuilder.setContentTitle("TestAppTime")//Заменить на название приложения
                 .setSmallIcon(R.drawable.icon);
-        if(MyTimer.b){
-            mBuilder.addAction(0, "Приступить к работе", pIntentWork);
-        }
         mBuilder.addAction(0, "Остановить", pIntentClose);
-        if(!MyTimer.b) {
-            MyTimer.mHandler.sendEmptyMessage(3);
-        }
+        MyTimer.mHandler.sendEmptyMessage(3);
     }
 
 

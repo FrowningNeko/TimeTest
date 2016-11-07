@@ -50,7 +50,7 @@ public class MyTimer extends Service {
     static Timer timer;
     Timer timerFail;
     PowerManager.WakeLock wakeLock;
-    static boolean b;
+    public static int flag;
 
     @Override
     public void onCreate() {
@@ -61,8 +61,6 @@ public class MyTimer extends Service {
         pIntentWork = PendingIntent.getBroadcast(MyTimer.this, 0, intentWork, PendingIntent.FLAG_CANCEL_CURRENT);
         sharedPreferences = getSharedPreferences(SP_SETTING, Context.MODE_PRIVATE);
         sharPrefSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        b = sharPrefSettings.getBoolean("workAuto", false);
-
         scoreSP = sharedPreferences.getInt(SP_SCORE, 0);
         Intent intent1 = new Intent(MyTimer.this, CloseApp.class);
         PendingIntent pIntent2 = PendingIntent.getService(MyTimer.this, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -75,28 +73,30 @@ public class MyTimer extends Service {
                 .addAction(0, "Остановить", pIntent2);
         notification = mBuilder.build();
         myAlarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-
+       final  MainActivity main = new MainActivity();
         mHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what){
                     case 2://Окончание таймера работы
-                        MainActivity.relax.setEnabled(true);
                         inspecCycle++;
                         inspec = 2;
+                        flag = 2;
                         stopForeground(true);
+                        main.Tools();
                         TimerScoreFail();
                         break;
                     case 3://Окончание таймера отдыха
-                        if(inspecCycle<4){
-                        MainActivity.relax.setEnabled(false);
                         inspec = 1;
+                        flag = 3;
+                        if(inspecCycle<4){
                             score++;
                             MainActivity.strScore.setText(""+(4-score));
                         }
                         else{
                             levelUp();
                         }
+                        main.Tools();
                         break;
                     case 1://Выполнение работы таймера
                         if (time > 60000&&MainActivity.timeMin != null) {
@@ -135,15 +135,15 @@ public class MyTimer extends Service {
                     case 6: // Exit
                         MainActivity.timeMin.setText(":)");
                         wakeLock.release();
-                        MainActivity.start.setBackgroundResource(R.drawable.start);
-                        MainActivity.relax.setEnabled(false);
                         stopForeground(true);
                         break;
                     case 7:
                         timerFail.cancel();
                         break;
                     case 8:
-
+                        myAlarm(myAlarm, pIntentRelax, pIntentWork, sharPrefSettings);
+                        break;
+                    case 9:
                         break;
             }
             }
@@ -263,7 +263,4 @@ public class MyTimer extends Service {
         mHandler.sendEmptyMessage(7);
     }
 
-    public boolean getSettingWork(){
-        return b;
-    }
 }

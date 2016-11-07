@@ -40,10 +40,6 @@ public class AlarumRelax extends BroadcastReceiver {
             mBuilder.setContentText("Поздравляю! Вы получили новый уровень!");
             mNotifyManager.notify(778, mBuilder.build());
         }
-        sendHandlerMessage();
-    }
-
-    public void sendHandlerMessage(){
         MyTimer.mHandler.sendEmptyMessage(2);
     }
 }

@@ -28,8 +28,9 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".Level"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".Level"
+            android:theme="@style/AppTheme" />
 
         <service
             android:name=".CloseApp"
@@ -43,12 +44,18 @@
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Shop"
+            android:label="@string/title_activity_shop"
             android:theme="@style/AppTheme"/>
 
         <service
             android:name=".Work"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
+
+
     </application>
 
 </manifest>

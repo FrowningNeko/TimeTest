@@ -27,7 +27,8 @@ public class Work extends Service {
         timer.CloseTimer();
         timer.TimerScoreFailCancel();
         SharedPreferences prefSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        timer.myAlarm(myAlarm, pIntentRelax, pIntentWork, prefSettings);
+        //timer.myAlarm(myAlarm, pIntentRelax, pIntentWork, prefSettings);
+
         stopSelf();
     }
 
