@@ -26,7 +26,7 @@ public class MyTimer extends Service {
     static int inspecCycle = 0; //Проверка количества выполнений таймера
     int score = 0;
     int scoreSP;
-    int timeFail = 15000;
+    int timeFail = 300000;
     int i=0;
     public static Handler mHandler;
     PendingIntent pIntentRelax;
@@ -100,7 +100,7 @@ public class MyTimer extends Service {
                         break;
                     case 1://Выполнение работы таймера
                         if (time > 60000&&MainActivity.timeMin != null) {
-                            MainActivity.timeMin.setText("" + (time / 60000) + " минут");
+                            MainActivity.timeMin.setText("" + (time / 60000) + " мин");
 
                         } else {
                             MainActivity.timeMin.setText(""+(time / 1000) + " секунд");
@@ -114,9 +114,6 @@ public class MyTimer extends Service {
                         }
                         mNotifyManager.notify(778, mBuilder.build());
                         break;
-//                    case 4://Запуск таймера отдыха из MainActivity
-////                        myAlarm();// Добавить выбор в настройках
-//                        break;
                     case 5:// Сгорание очков
                         mBuilder.setContentText("Увы, очки сгорели :(");
                         stopForeground(true);
@@ -124,13 +121,13 @@ public class MyTimer extends Service {
                         mNotifyManager.notify(777, mBuilder.build());
                         MainActivity.strScore.setText("4");
                         MainActivity.timeMin.setText(":)");
-                        int scoreFail = sharedPreferences.getInt("ScoreFail", 0);
+                        int scoreFail = sharedPreferences.getInt(SP_SCORE_FAIL, 0);
                         scoreFail = scoreFail + score;
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putInt("ScoreFail", scoreFail);
+                        editor.putBoolean("DoubleCoin", false);
                         editor.apply();
                         score = 0;
-                        //stopSelf();
                         break;
                     case 6: // Exit
                         MainActivity.timeMin.setText(":)");
@@ -142,8 +139,6 @@ public class MyTimer extends Service {
                         break;
                     case 8:
                         myAlarm(myAlarm, pIntentRelax, pIntentWork, sharPrefSettings);
-                        break;
-                    case 9:
                         break;
             }
             }
@@ -211,7 +206,16 @@ public class MyTimer extends Service {
         inspecCycle = 0;
         lvl++;
         coin = sharedPreferences.getInt(SP_COIN, 0);
-        coin = coin+10;
+        Boolean doubleCoin = sharedPreferences.getBoolean("DoubleCoin", false);
+        if(doubleCoin){
+            coin = coin+60;
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+            edit.putBoolean("DoubleCoin", false);
+            edit.apply();
+        }
+        else {
+            coin = coin+30;
+        }
         score = 0;
         scoreSP = scoreSP+4;
         SharedPreferences.Editor edit = sharedPreferences.edit();

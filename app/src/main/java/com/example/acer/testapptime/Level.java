@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 public class Level extends Activity {
 
-    TextView tvLevelBar;
     TextView tvLevel;
     TextView tvScore;
     TextView tvScoreFail;
@@ -33,7 +32,6 @@ public class Level extends Activity {
         setContentView(R.layout.activity_level);
 
         tvCoin = (TextView)findViewById(R.id.textView14);
-        tvLevelBar = (TextView)findViewById(R.id.textView8);
         tvScore = (TextView)findViewById(R.id.textView10);
         tvScoreFail = (TextView)findViewById(R.id.textView12);
         CoinSpend = (TextView)findViewById(R.id.textView16);
@@ -47,9 +45,9 @@ public class Level extends Activity {
         int level = sharedPreferences.getInt(SP_LVL, 1);
         tvCoin.setText(String.valueOf(sharedPreferences.getInt(SP_COIN, 0)));
         tvLevel.setText(String.valueOf(level));
-        tvLevelBar.setText(String.valueOf(level));
 //        tvCoinSpend.setText(String.valueOf(sharedPreferences.getInt(SP_SCORE, 444)));
         tvScoreFail.setText(String.valueOf(sharedPreferences.getInt(SP_SCORE_FAIL, 444)));
+        progressBar.setProgress(0);
 
         switch (iScore){
             case 1:

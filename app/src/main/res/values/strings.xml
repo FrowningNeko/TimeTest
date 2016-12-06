@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">TestAppTime</string>
+    <string name="app_name">Какое-то приложение</string>
     <string name="action_settings">Настройки</string>
-    <string name="title_activity_settings">Settings</string>
-    <string name="title_activity_shop">Shop</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="title_activity_shop">Магазин</string>
+    <string name="title_activity_level">Статистика</string>
 </resources>

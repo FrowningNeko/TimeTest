@@ -9,14 +9,7 @@
     tools:context=".MainActivity"
     android:background="@color/background">
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:text="Старт"
-        android:background="@color/orange"
-        android:id="@+id/btMain"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,8 +30,8 @@
         android:textSize="15sp"
         android:textColor="@color/white"
         android:id="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/btMain" />
+        android:layout_above="@+id/linearLayout"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,14 +43,7 @@
         android:layout_above="@+id/textView3"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button3"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="200dp"
@@ -83,13 +69,52 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Shop"
-        android:id="@+id/shop"
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.1"
+            android:text="Статистика"
+            android:textSize="15sp"
+            android:background="@color/orange"
+            android:id="@+id/button3"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginRight="3dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Старт"
+            android:layout_weight="1"
+            android:background="@color/orange"
+            android:id="@+id/btMain"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Магазин"
+            android:background="@color/orange"
+            android:layout_weight="1.1"
+            android:id="@+id/shop"
+            android:textSize="15sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="3dp" />
+    </LinearLayout>
 
 </RelativeLayout>
