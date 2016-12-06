@@ -28,6 +28,11 @@ public class MyTimer extends Service {
     int scoreSP;
     int timeFail = 300000;
     int i=0;
+    final int SCORE_FAIL = 5;
+    final int WORK_FINAL = 2;
+    final int RELAX_FINAL = 3;
+    final int TIMER_WORK = 1;
+    final int EXIT = 6;
     public static Handler mHandler;
     PendingIntent pIntentRelax;
     PendingIntent pIntentWork;
@@ -78,7 +83,7 @@ public class MyTimer extends Service {
             @Override
             public void handleMessage(Message msg) {
                 switch (msg.what){
-                    case 2://Окончание таймера работы
+                    case WORK_FINAL:
                         inspecCycle++;
                         inspec = 2;
                         flag = 2;
@@ -86,7 +91,7 @@ public class MyTimer extends Service {
                         main.Tools();
                         TimerScoreFail();
                         break;
-                    case 3://Окончание таймера отдыха
+                    case RELAX_FINAL:
                         inspec = 1;
                         flag = 3;
                         if(inspecCycle<4){
@@ -98,8 +103,8 @@ public class MyTimer extends Service {
                         }
                         main.Tools();
                         break;
-                    case 1://Выполнение работы таймера
-                        if (time > 60000&&MainActivity.timeMin != null) {
+                    case TIMER_WORK:
+                        if (time > 60000 && MainActivity.timeMin != null) {
                             MainActivity.timeMin.setText("" + (time / 60000) + " мин");
 
                         } else {
@@ -114,7 +119,7 @@ public class MyTimer extends Service {
                         }
                         mNotifyManager.notify(778, mBuilder.build());
                         break;
-                    case 5:// Сгорание очков
+                    case SCORE_FAIL:// Сгорание очков
                         mBuilder.setContentText("Увы, очки сгорели :(");
                         stopForeground(true);
                         mNotifyManager.cancel(778);
@@ -129,7 +134,7 @@ public class MyTimer extends Service {
                         editor.apply();
                         score = 0;
                         break;
-                    case 6: // Exit
+                    case EXIT: // Exit
                         MainActivity.timeMin.setText(":)");
                         wakeLock.release();
                         stopForeground(true);
