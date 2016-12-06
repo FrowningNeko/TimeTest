@@ -124,7 +124,7 @@ public class MyTimer extends Service {
                         int scoreFail = sharedPreferences.getInt(SP_SCORE_FAIL, 0);
                         scoreFail = scoreFail + score;
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putInt("ScoreFail", scoreFail);
+                        editor.putInt(SP_SCORE_FAIL, scoreFail);
                         editor.putBoolean("DoubleCoin", false);
                         editor.apply();
                         score = 0;

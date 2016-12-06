@@ -33,6 +33,7 @@ public class MainActivity extends Activity {
     SharedPreferences sharedPreferences;
     static ProgressBar progressBar;
     static TextView strScore;
+    static TextView strScoreText;
     Button shop;
 
     @Override
@@ -50,6 +51,7 @@ public class MainActivity extends Activity {
         shop = (Button)findViewById(R.id.shop);
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progressBar.setProgress(0);
         sharedPreferences = getSharedPreferences("Setting", Context.MODE_PRIVATE);
         level.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,6 +136,8 @@ public class MainActivity extends Activity {
 
     public void loadScore(){
         strScore = (TextView)findViewById(R.id.textView3);
+        strScoreText = (TextView)findViewById(R.id.textView4);
+        strScoreText.setText("Кредитов до нового уровня:");
         strScore.setText("4");
     }
 
@@ -141,6 +145,7 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+
         return true;
     }
 

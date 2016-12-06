@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time"
+        android:text=":)"
         android:textColor="@color/white"
         android:textSize="25sp"
         android:id="@+id/textView2"
@@ -26,7 +26,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Score"
+        android:text=""
         android:textSize="15sp"
         android:textColor="@color/white"
         android:id="@+id/textView3"
@@ -36,27 +36,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Кредитов до нового уровня:"
+        android:text=""
         android:textSize="15sp"
         android:textColor="@color/white"
         android:id="@+id/textView4"
         android:layout_above="@+id/textView3"
         android:layout_centerHorizontal="true" />
 
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:indeterminate="false"
-        android:progressDrawable="@drawable/circular_progress_bar"
-        android:background="@drawable/circle_shape"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:max="100"
-        android:progress="65"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -116,5 +102,19 @@
             android:layout_alignParentEnd="true"
             android:layout_marginLeft="3dp" />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        android:background="@drawable/circle_shape"
+        android:gravity="center_horizontal"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:max="100"
+        android:progress="65"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
