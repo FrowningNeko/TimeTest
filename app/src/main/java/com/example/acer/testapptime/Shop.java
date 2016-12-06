@@ -15,11 +15,10 @@ public class Shop extends Activity {
 
     SharedPreferences spShop;
     Button shopDoubleCoin;
-    Button shop2;
     int coin;
     int lvl;
     Boolean inspecShop;
-    Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
