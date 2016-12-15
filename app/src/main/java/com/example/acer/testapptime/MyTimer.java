@@ -98,6 +98,12 @@ public class MyTimer extends Service {
                         }
                         else{
                             levelUp();
+                            MainActivity.strScore.setText("4");
+                            MainActivity.timeMin.setText(":)");
+                            mBuilder.setContentText("Поздравляю, вы получили новый уровень! ");
+                            stopForeground(true);
+                            mNotifyManager.cancel(778);
+                            mNotifyManager.notify(777, mBuilder.build());
                             main.Tools();
                         }
                         main.Tools();
@@ -228,6 +234,8 @@ public class MyTimer extends Service {
         edit.putInt(SP_LVL, lvl);
         edit.putInt("Karma", karma);
         edit.apply();
+        Toast.makeText(this, "Вы получили новый уровень!",
+                Toast.LENGTH_SHORT).show();
     }
 
     public void CloseTimer(){
