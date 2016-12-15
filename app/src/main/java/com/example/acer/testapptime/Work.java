@@ -24,8 +24,7 @@ public class Work extends Service {
         PendingIntent pIntentRelax = PendingIntent.getBroadcast(Work.this, 0, intent2, PendingIntent.FLAG_UPDATE_CURRENT);
         Intent intentWork = new Intent(Work.this, AlarumWork.class);
         PendingIntent pIntentWork = PendingIntent.getBroadcast(Work.this, 0, intentWork, PendingIntent.FLAG_CANCEL_CURRENT);
-        timer.CloseTimer();
-        timer.TimerScoreFailCancel();
+
         SharedPreferences prefSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         //timer.myAlarm(myAlarm, pIntentRelax, pIntentWork, prefSettings);
 

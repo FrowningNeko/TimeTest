@@ -31,7 +31,7 @@ public class Relax extends Service {
         timer.TimerScoreFailCancel();
         SharedPreferences prefSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         MyTimer.mHandler.sendEmptyMessage(3);
-        timer.myAlarm(myAlarm, pIntentRelax, pIntentWork, prefSettings);
+        //timer.myAlarm(myAlarm, pIntentRelax, pIntentWork, prefSettings);
         stopSelf();
     }
 

@@ -26,7 +26,7 @@ public class MyTimer extends Service {
     static int inspecCycle = 0; //Проверка количества выполнений таймера
     int score = 0;
     int scoreSP;
-    int timeFail = 300000;
+    int timeFail = 30000;
     int i=0;
     final int SCORE_FAIL = 5;
     final int WORK_FINAL = 2;
@@ -39,8 +39,6 @@ public class MyTimer extends Service {
     public static final String SP_SETTING = "setting";
     public static final String SP_SCORE = "score";
     public static final String SP_LVL = "LVL";
-    public static final String SP_COIN = "Coin";
-    public static final String SP_SCORE_FAIL = "ScoreFail";
     static long time = 10000;
     long timeWork;
     long timeRelax;
@@ -94,12 +92,13 @@ public class MyTimer extends Service {
                     case RELAX_FINAL:
                         inspec = 1;
                         flag = 3;
-                        if(inspecCycle<4){
+                        if(inspecCycle<1){
                             score++;
                             MainActivity.strScore.setText(""+(4-score));
                         }
                         else{
                             levelUp();
+                            main.Tools();
                         }
                         main.Tools();
                         break;
@@ -126,16 +125,21 @@ public class MyTimer extends Service {
                         mNotifyManager.notify(777, mBuilder.build());
                         MainActivity.strScore.setText("4");
                         MainActivity.timeMin.setText(":)");
-                        int scoreFail = sharedPreferences.getInt(SP_SCORE_FAIL, 0);
-                        scoreFail = scoreFail + score;
+                        int karma = sharedPreferences.getInt("Karma", 50);
+                        karma = karma -5;
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putInt(SP_SCORE_FAIL, scoreFail);
+                        editor.putInt("Karma", karma);
                         editor.putBoolean("DoubleCoin", false);
                         editor.apply();
                         score = 0;
                         break;
                     case EXIT: // Exit
                         MainActivity.timeMin.setText(":)");
+                        int karma2 = sharedPreferences.getInt("Karma", 50);
+                        karma2 = karma2 -5;
+                        SharedPreferences.Editor editor2 = sharedPreferences.edit();
+                        editor2.putInt("Karma", karma2);
+                        editor2.apply();
                         wakeLock.release();
                         stopForeground(true);
                         break;
@@ -206,27 +210,23 @@ public class MyTimer extends Service {
 
     public void levelUp(){
         int lvl;
-        int coin;
-        lvl = sharedPreferences.getInt(SP_LVL, 0);
+        lvl = sharedPreferences.getInt(SP_LVL, 1);
         inspecCycle = 0;
         lvl++;
-        coin = sharedPreferences.getInt(SP_COIN, 0);
+        int karma = sharedPreferences.getInt("Karma", 50);
         Boolean doubleCoin = sharedPreferences.getBoolean("DoubleCoin", false);
         if(doubleCoin){
-            coin = coin+60;
+            karma = karma+20;
             SharedPreferences.Editor edit = sharedPreferences.edit();
             edit.putBoolean("DoubleCoin", false);
             edit.apply();
         }
         else {
-            coin = coin+30;
+            karma = karma+10;
         }
-        score = 0;
-        scoreSP = scoreSP+4;
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putInt(SP_SCORE, scoreSP);
         edit.putInt(SP_LVL, lvl);
-        edit.putInt(SP_COIN, coin);
+        edit.putInt("Karma", karma);
         edit.apply();
     }
 
@@ -247,9 +247,10 @@ public class MyTimer extends Service {
     @Override
     public void onDestroy()
     {
+        mHandler.sendEmptyMessage(6);
         Toast.makeText(this, "Служба остановлена",
                 Toast.LENGTH_SHORT).show();
-        mHandler.sendEmptyMessage(6);
+
         super.onDestroy();
     }
 

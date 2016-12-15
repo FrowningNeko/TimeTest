@@ -128,6 +128,8 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 MyTimer.mHandler.sendEmptyMessage(8);
                 MyTimer.flag = 1;
+                MyTimer myTimer = new MyTimer();
+                myTimer.TimerScoreFailCancel();
                 Tools();
             }
         });

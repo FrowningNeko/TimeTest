@@ -17,6 +17,7 @@ public class Shop extends Activity {
     Button shopDoubleCoin;
     int coin;
     int lvl;
+    int karma;
     Boolean inspecShop;
 
     @Override
@@ -26,10 +27,9 @@ public class Shop extends Activity {
 
         shopDoubleCoin = (Button)findViewById(R.id.shop1);
         spShop = getSharedPreferences("settting", Context.MODE_PRIVATE);
-        coin = spShop.getInt("Coin", 0);
+        karma = spShop.getInt("Karma", 50);
         lvl = spShop.getInt("LVL", 0);
         inspecShop = spShop.getBoolean("DoubleCoin", false);
-
 
         if(inspecShop){
             shopDoubleCoin.setEnabled(false);
@@ -40,7 +40,7 @@ public class Shop extends Activity {
         shopDoubleCoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(coin > 30){
+                if(karma >49){//После тестов исправить на 60
                 SharedPreferences.Editor editor = spShop.edit();
                 shopDoubleCoin.setEnabled(false);
                 shopDoubleCoin.setText("");
@@ -50,7 +50,7 @@ public class Shop extends Activity {
                 Toast.makeText(getApplicationContext(), "Покупка совершена!", Toast.LENGTH_SHORT).show();
             }
             else{
-                    Toast.makeText(getApplicationContext(), "Не хватает монет", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Не хватает кармы", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -64,9 +64,9 @@ public class Shop extends Activity {
         getMenuInflater().inflate(R.menu.menu_shop, menu);
 
         menu.add(0, 1, 0, "")
-                .setTitle(String.valueOf(coin))
+                .setTitle(String.valueOf(karma))
                 .setShowAsAction(1);
-        menu.add(0, 2, 0, "")
+        menu.add(0, 2, 0, "")//Исправить на что-нибудь зеленое
                 .setIcon(R.drawable.coin)
                 .setTitle("")
                 .setEnabled(false)
