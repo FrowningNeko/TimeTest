@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -32,8 +33,10 @@ public class MainActivity extends Activity {
     Intent intent;
     SharedPreferences sharedPreferences;
     static ProgressBar progressBar;
-    static TextView strScore;
-    static TextView strScoreText;
+    static ImageView imageKarma1;
+    static ImageView imageKarma2;
+    static ImageView imageKarma3;
+    static ImageView imageKarma4;
     Button shop;
 
     @Override
@@ -49,6 +52,10 @@ public class MainActivity extends Activity {
         btMain = (Button)findViewById(R.id.btMain);
         level = (Button)findViewById(R.id.button3);
         shop = (Button)findViewById(R.id.shop);
+        imageKarma1 = (ImageView)findViewById(R.id.imageKarma1);
+        imageKarma2 = (ImageView)findViewById(R.id.imageKarma2);
+        imageKarma3 = (ImageView)findViewById(R.id.imageKarma3);
+        imageKarma4 = (ImageView)findViewById(R.id.imageKarma4);
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         progressBar.setProgress(0);
@@ -91,7 +98,6 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 startService(new Intent(MainActivity.this, MyTimer.class));
-                loadScore();
                 MyTimer.flag = 1;
                 Tools();
             }
@@ -102,7 +108,7 @@ public class MainActivity extends Activity {
         btMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startService(new Intent(MainActivity.this, CloseApp.class));
+                MyTimer.mHandler.sendEmptyMessage(9);
                 MyTimer.flag = 0;
                 Tools();
             }
@@ -135,13 +141,6 @@ public class MainActivity extends Activity {
         });
     }
 
-
-    public void loadScore(){
-        strScore = (TextView)findViewById(R.id.textView3);
-        strScoreText = (TextView)findViewById(R.id.textView4);
-        strScoreText.setText("Кредитов до нового уровня:");
-        strScore.setText("4");
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

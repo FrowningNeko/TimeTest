@@ -88,19 +88,38 @@ public class MyTimer extends Service {
                         stopForeground(true);
                         main.Tools();
                         TimerScoreFail();
+                        MainActivity.timeMin.setText(":)");
                         break;
                     case RELAX_FINAL:
                         inspec = 1;
                         flag = 3;
-                        if(inspecCycle<1){
+                        if(inspecCycle<3){
                             score++;
-                            MainActivity.strScore.setText(""+(4-score));
+                            MainActivity.timeMin.setText(":)");
+                            switch (score){
+                                case 1:
+                                    MainActivity.imageKarma1.setImageResource(R.drawable.karma);
+                                    break;
+                                case 2:
+                                    MainActivity.imageKarma2.setImageResource(R.drawable.karma);
+                                    break;
+                                case 3:
+                                    MainActivity.imageKarma3.setImageResource(R.drawable.karma);
+                                    break;
+                                case 4:
+                                    MainActivity.imageKarma1.setImageResource(R.drawable.karma_null);
+                                    MainActivity.imageKarma2.setImageResource(R.drawable.karma_null);
+                                    MainActivity.imageKarma3.setImageResource(R.drawable.karma_null);
+                                    MainActivity.imageKarma4.setImageResource(R.drawable.karma_null);
+                                    break;
+                            }
+                            main.Tools();
                         }
                         else{
                             levelUp();
-                            MainActivity.strScore.setText("4");
-                            MainActivity.timeMin.setText(":)");
+                            MainActivity.imageKarma4.setImageResource(R.drawable.karma);
                             mBuilder.setContentText("Поздравляю, вы получили новый уровень! ");
+                            MainActivity.timeMin.setText("Ура!");
                             stopForeground(true);
                             mNotifyManager.cancel(778);
                             mNotifyManager.notify(777, mBuilder.build());
@@ -109,18 +128,16 @@ public class MyTimer extends Service {
                         main.Tools();
                         break;
                     case TIMER_WORK:
-                        if (time > 60000 && MainActivity.timeMin != null) {
-                            MainActivity.timeMin.setText("" + (time / 60000) + " мин");
+                        if (MainActivity.timeMin != null) {
+                            MainActivity.timeMin.setText("" + ((time/ 60000)+1)+" мин");
 
-                        } else {
-                            MainActivity.timeMin.setText(""+(time / 1000) + " секунд");
-                        }//возможно стоит изменить время таймера и текст для быстродействия приложения
+                        }
                         MainActivity.progressBar.setProgress(i);
                         if(inspec==1){
-                            mBuilder.setContentText("До перерыва осталось " +((MyTimer.time)/60000)+" мин");
+                            mBuilder.setContentText("До перерыва осталось " +(((MyTimer.time)/60000)+1)+" мин");
                         }
                         else{
-                            mBuilder.setContentText("Через " +((MyTimer.time)/60000)+" мин снова работать :)");
+                            mBuilder.setContentText("Через " +(((MyTimer.time)/60000)+1)+" мин снова работать :)");
                         }
                         mNotifyManager.notify(778, mBuilder.build());
                         break;
@@ -129,8 +146,10 @@ public class MyTimer extends Service {
                         stopForeground(true);
                         mNotifyManager.cancel(778);
                         mNotifyManager.notify(777, mBuilder.build());
-                        MainActivity.strScore.setText("4");
-                        MainActivity.timeMin.setText(":)");
+                        MainActivity.imageKarma1.setImageResource(R.drawable.karma_null);
+                        MainActivity.imageKarma2.setImageResource(R.drawable.karma_null);
+                        MainActivity.imageKarma3.setImageResource(R.drawable.karma_null);
+                        MainActivity.imageKarma4.setImageResource(R.drawable.karma_null);
                         int karma = sharedPreferences.getInt("Karma", 50);
                         karma = karma -5;
                         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -155,6 +174,8 @@ public class MyTimer extends Service {
                     case 8:
                         myAlarm(myAlarm, pIntentRelax, pIntentWork, sharPrefSettings);
                         break;
+                    case 9:
+                        startService(new Intent(MyTimer.this, CloseApp.class));
             }
             }
         };
