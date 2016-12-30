@@ -2,15 +2,21 @@
 
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.acer.testapptime.Shop"
     android:padding="10dp">
+
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+        android:id="@+id/scrollView"
+        android:layout_below="@+id/textView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp">
         <RelativeLayout
             android:background="#1bff8300"
             android:layout_width="match_parent"
@@ -68,7 +74,7 @@
                     android:layout_width="17dp"
                     android:layout_height="17dp"
                     android:id="@+id/imageView4"
-                    android:background="@drawable/coin"
+                    android:background="@drawable/karma"
                     android:layout_below="@+id/textView22"
                     android:layout_toRightOf="@+id/textView"
                     android:layout_toEndOf="@+id/textView" />
@@ -76,7 +82,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="30"
+                    android:text="10"
                     android:id="@+id/textView"
                     android:layout_below="@+id/textView22"
                     android:layout_toRightOf="@+id/pay"
@@ -91,6 +97,30 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:paddingLeft="5dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Необходимый уровень:"
+                    android:id="@+id/pay2"
+                    android:layout_below="@+id/pay"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:paddingLeft="5dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="65"
+                    android:id="@+id/txkarma"
+                    android:layout_below="@+id/pay"
+                    android:layout_toRightOf="@+id/pay2"
+                    android:layout_toEndOf="@+id/pay2" />
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:id="@+id/imkarma"
+                    android:background="@drawable/karma"
+                    android:layout_toRightOf="@+id/txkarma"
+                    android:layout_alignBottom="@+id/txkarma"/>
 
             </RelativeLayout>
 
@@ -162,7 +192,7 @@
             android:layout_width="17dp"
             android:layout_height="17dp"
             android:id="@+id/imageView2"
-            android:background="@drawable/coin"
+            android:background="@drawable/karma"
             android:layout_alignBottom="@+id/textView6"
             android:layout_toRightOf="@+id/textView7"
             android:layout_toEndOf="@+id/textView7" />
@@ -243,7 +273,7 @@
                     android:layout_width="17dp"
                     android:layout_height="17dp"
                     android:id="@+id/imageView3"
-                    android:background="@drawable/coin"
+                    android:background="@drawable/karma"
                     android:layout_alignTop="@+id/textView23"
                     android:layout_toRightOf="@+id/textView23"
                     android:layout_toEndOf="@+id/textView23" />
@@ -261,5 +291,31 @@
 
         </RelativeLayout>
     </ScrollView>
+
+    <TextView
+        android:text="Уровень вашей кармы: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/scrollView"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:id="@+id/karma_level" />
+
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:background="@drawable/karma"
+        android:layout_above="@+id/scrollView"
+        android:layout_toRightOf="@+id/karma_level"
+        android:layout_toEndOf="@+id/karma_level"
+        android:id="@+id/imageView5" />
 
 </RelativeLayout>

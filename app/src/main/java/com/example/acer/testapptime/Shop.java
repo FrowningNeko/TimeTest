@@ -9,16 +9,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Shop extends Activity {
 
     SharedPreferences spShop;
     Button shopDoubleCoin;
-    int coin;
-    int lvl;
     int karma;
     Boolean inspecShop;
+    TextView levelKarma;
+    public static final String SP_SETTING = "setting";
+    public static final String SP_KARMA = "Karma";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +28,11 @@ public class Shop extends Activity {
         setContentView(R.layout.activity_shop);
 
         shopDoubleCoin = (Button)findViewById(R.id.shop1);
-        spShop = getSharedPreferences("settting", Context.MODE_PRIVATE);
-        karma = spShop.getInt("Karma", 50);
-        lvl = spShop.getInt("LVL", 0);
+        spShop = getSharedPreferences(SP_SETTING, Context.MODE_PRIVATE);
+        karma = spShop.getInt(SP_KARMA, 50);
         inspecShop = spShop.getBoolean("DoubleCoin", false);
+        levelKarma = (TextView)findViewById(R.id.karma_level);
+        levelKarma.setText(String.valueOf(karma));
 
         if(inspecShop){
             shopDoubleCoin.setEnabled(false);
@@ -40,13 +43,19 @@ public class Shop extends Activity {
         shopDoubleCoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(karma >49){//После тестов исправить на 60
+                if(karma >65){
                 SharedPreferences.Editor editor = spShop.edit();
                 shopDoubleCoin.setEnabled(false);
                 shopDoubleCoin.setText("");
+                int karmaShop = spShop.getInt("KarmaShop", 0);
+                karmaShop = karmaShop+10;
+                karma = karma - 10;
+                editor.putInt("KarmaShop", karmaShop);
                 editor.putBoolean("DoubleCoin", true);
+                editor.putInt("Karma", karma);
                 editor.apply();
                 shopDoubleCoin.setText("✓");
+                levelKarma.setText(String.valueOf(karma));
                 Toast.makeText(getApplicationContext(), "Покупка совершена!", Toast.LENGTH_SHORT).show();
             }
             else{
@@ -63,14 +72,6 @@ public class Shop extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_shop, menu);
 
-        menu.add(0, 1, 0, "")
-                .setTitle(String.valueOf(karma))
-                .setShowAsAction(1);
-        menu.add(0, 2, 0, "")//Исправить на что-нибудь зеленое
-                .setIcon(R.drawable.coin)
-                .setTitle("")
-                .setEnabled(false)
-                .setShowAsAction(1);
         return true;
     }
 

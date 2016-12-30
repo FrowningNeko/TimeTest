@@ -118,7 +118,7 @@ public class MyTimer extends Service {
                         else{
                             levelUp();
                             MainActivity.imageKarma4.setImageResource(R.drawable.karma);
-                            mBuilder.setContentText("Поздравляю, вы получили новый уровень! ");
+                            mBuilder.setContentText("Поздравляю, вы получили новый уровень!");
                             MainActivity.timeMin.setText("Ура!");
                             stopForeground(true);
                             mNotifyManager.cancel(778);
@@ -151,9 +151,12 @@ public class MyTimer extends Service {
                         MainActivity.imageKarma3.setImageResource(R.drawable.karma_null);
                         MainActivity.imageKarma4.setImageResource(R.drawable.karma_null);
                         int karma = sharedPreferences.getInt("Karma", 50);
+                        int karmaFail = sharedPreferences.getInt("karmaFail", 0);
+                        karmaFail = karmaFail+5;
                         karma = karma -5;
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putInt("Karma", karma);
+                        editor.putInt("KarmaFail", karmaFail);
                         editor.putBoolean("DoubleCoin", false);
                         editor.apply();
                         score = 0;
@@ -162,8 +165,11 @@ public class MyTimer extends Service {
                         MainActivity.timeMin.setText(":)");
                         int karma2 = sharedPreferences.getInt("Karma", 50);
                         karma2 = karma2 -5;
+                        int karmaFail2 = sharedPreferences.getInt("karmaFail", 0);
+                        karmaFail2 = karmaFail2+5;
                         SharedPreferences.Editor editor2 = sharedPreferences.edit();
                         editor2.putInt("Karma", karma2);
+                        editor2.putInt("KarmaFail", karmaFail2);
                         editor2.apply();
                         wakeLock.release();
                         stopForeground(true);

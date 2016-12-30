@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,21 +13,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ваш уровень: "
-        android:id="@+id/textView5"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"  />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Level"
         android:id="@+id/textView8"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/textView5"
         android:layout_toEndOf="@+id/textView5"
         android:textAppearance="?android:attr/textAppearanceLarge"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ваш уровень: "
+        android:id="@+id/textView5"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -37,6 +37,14 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/progressBar" />
+    <TextView
+        android:text="999"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/karma"
+        android:layout_marginTop="20dp"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -53,61 +61,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Очков сгорело: "
+        android:text="Кармы сгорело: "
         android:id="@+id/textView11"
         android:layout_alignTop="@+id/textView12"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView12"
-        android:layout_below="@+id/textView10"
-        android:layout_toRightOf="@+id/textView11"
-        android:layout_toEndOf="@+id/textView11" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Кредиты: "
-        android:id="@+id/textView13"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView12"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView14"
-        android:layout_below="@+id/textView11"
-        android:layout_toRightOf="@+id/textView13"
-        android:layout_toEndOf="@+id/textView13" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Потрачено кредитов: "
-        android:id="@+id/textView15"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView14"
-        android:layout_alignParentLeft="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView16"
-        android:layout_alignTop="@+id/textView15"
-        android:layout_toRightOf="@+id/textView15"
-        android:layout_toEndOf="@+id/textView15" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -129,6 +87,53 @@
         android:layout_below="@+id/textView5"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="67dp" />
+
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:background="@drawable/karma"
+        android:id="@+id/imageView6"
+        android:layout_alignTop="@+id/karma"
+        android:layout_toLeftOf="@+id/karma"
+        android:layout_toStartOf="@+id/karma" />
+
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:id="@+id/imageView7"
+        android:layout_alignTop="@+id/karma"
+        android:layout_toRightOf="@+id/karma"
+        android:layout_toEndOf="@+id/karma" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="999"
+        android:id="@+id/textView12"
+        android:layout_below="@+id/textView9"
+        android:layout_toRightOf="@+id/textView11"
+        android:layout_toEndOf="@+id/textView11" />
+
+    <TextView
+        android:text="Потрачено на покупки: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/textView13"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <TextView
+        android:text="999"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView11"
+        android:layout_toRightOf="@+id/textView13"
+        android:layout_toEndOf="@+id/textView13"
+        android:id="@+id/karmaShop"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
 
 </RelativeLayout>

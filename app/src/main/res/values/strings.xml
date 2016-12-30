@@ -4,4 +4,6 @@
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_shop">Магазин</string>
     <string name="title_activity_level">Статистика</string>
+    <string name="title_activity_about">О приложении</string>
+    <string name="title_activity_faq">FAQ</string>
 </resources>

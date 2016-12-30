@@ -10,7 +10,7 @@
                 android:entries="@array/listWorkArray"
                 android:entryValues="@array/listWorkValues" />
             <ListPreference
-                android:title="Время работы"
+                android:title="Время отдыха"
                 android:summary="Тут можно настроить время отдыха"
                 android:key="listRelax"
                 android:defaultValue="5"
