@@ -36,6 +36,7 @@ public class MyTimer extends Service {
     public static Handler mHandler;
     PendingIntent pIntentRelax;
     PendingIntent pIntentWork;
+    PendingIntent pendingMain;
     public static final String SP_SETTING = "setting";
     public static final String SP_SCORE = "score";
     public static final String SP_LVL = "LVL";
@@ -62,6 +63,8 @@ public class MyTimer extends Service {
         pIntentRelax = PendingIntent.getBroadcast(MyTimer.this, 0, intentRelax, PendingIntent.FLAG_UPDATE_CURRENT);
         Intent intentWork = new Intent(MyTimer.this, AlarumWork.class);
         pIntentWork = PendingIntent.getBroadcast(MyTimer.this, 0, intentWork, PendingIntent.FLAG_CANCEL_CURRENT);
+        Intent intentMain = new Intent(MyTimer.this, MainActivity.class);
+        pendingMain = PendingIntent.getActivity(MyTimer.this, 0, intentMain, PendingIntent.FLAG_CANCEL_CURRENT);
         sharedPreferences = getSharedPreferences(SP_SETTING, Context.MODE_PRIVATE);
         sharPrefSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         scoreSP = sharedPreferences.getInt(SP_SCORE, 0);
@@ -73,7 +76,8 @@ public class MyTimer extends Service {
         mBuilder.setContentTitle("TestAppTime")//Заменить на название приложения
                 .setSmallIcon(R.drawable.icon)
                 .setContentText("Мяу")
-                .addAction(0, "Остановить", pIntent2);
+                .addAction(0, "Остановить", pIntent2)
+                .setContentIntent(pendingMain);
         notification = mBuilder.build();
         myAlarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
        final  MainActivity main = new MainActivity();

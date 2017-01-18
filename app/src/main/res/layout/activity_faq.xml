@@ -18,4 +18,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/textView16" />
+
+    <Button
+        android:text="Ахтунг! +10 к карме!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView16"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/testButton" />
 </RelativeLayout>

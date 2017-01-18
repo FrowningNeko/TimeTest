@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Какое-то приложение</string>
+    <string name="app_name">Karma Timer</string>
     <string name="action_settings">Настройки</string>
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_shop">Магазин</string>

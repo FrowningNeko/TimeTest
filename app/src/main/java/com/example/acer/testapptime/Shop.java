@@ -16,8 +16,10 @@ public class Shop extends Activity {
 
     SharedPreferences spShop;
     Button shopDoubleCoin;
+    Button shopMusicForest;
     int karma;
     Boolean inspecShop;
+    Boolean inscecMusicForest;
     TextView levelKarma;
     public static final String SP_SETTING = "setting";
     public static final String SP_KARMA = "Karma";
@@ -28,9 +30,11 @@ public class Shop extends Activity {
         setContentView(R.layout.activity_shop);
 
         shopDoubleCoin = (Button)findViewById(R.id.shop1);
+        shopMusicForest = (Button)findViewById(R.id.shop2);
         spShop = getSharedPreferences(SP_SETTING, Context.MODE_PRIVATE);
         karma = spShop.getInt(SP_KARMA, 50);
         inspecShop = spShop.getBoolean("DoubleCoin", false);
+        inscecMusicForest = spShop.getBoolean("MisicForest", false);
         levelKarma = (TextView)findViewById(R.id.karma_level);
         levelKarma.setText(String.valueOf(karma));
 
@@ -38,23 +42,21 @@ public class Shop extends Activity {
             shopDoubleCoin.setEnabled(false);
             shopDoubleCoin.setText("✓");
         }
+        if(inscecMusicForest){
+            shopMusicForest.setEnabled(false);
+            shopMusicForest.setText("✓");
+        }
 
 
         shopDoubleCoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(karma >65){
-                SharedPreferences.Editor editor = spShop.edit();
                 shopDoubleCoin.setEnabled(false);
-                shopDoubleCoin.setText("");
-                int karmaShop = spShop.getInt("KarmaShop", 0);
-                karmaShop = karmaShop+10;
-                karma = karma - 10;
-                editor.putInt("KarmaShop", karmaShop);
-                editor.putBoolean("DoubleCoin", true);
-                editor.putInt("Karma", karma);
-                editor.apply();
                 shopDoubleCoin.setText("✓");
+                int numberShop;
+                numberShop = 1;
+                shopSave(numberShop);
                 levelKarma.setText(String.valueOf(karma));
                 Toast.makeText(getApplicationContext(), "Покупка совершена!", Toast.LENGTH_SHORT).show();
             }
@@ -64,6 +66,45 @@ public class Shop extends Activity {
             }
 
         });
+
+        shopMusicForest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(karma > 80){
+                    shopMusicForest.setEnabled(false);
+                    shopDoubleCoin.setText("✓");
+                    int numberShop = 2;
+                    shopSave(numberShop);
+                    levelKarma.setText(String.valueOf(karma));
+                    Toast.makeText(getApplicationContext(), "Покупка совершена!", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Не хватает кармы", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    public  void shopSave(int numberShop){
+        SharedPreferences.Editor editor = spShop.edit();
+        int karmaShop = spShop.getInt("KarmaShop", 0);
+
+        switch (numberShop){
+            case 1:
+                editor.putBoolean("DoubleCoin", true);
+                karmaShop = karmaShop+10;
+                karma = karma - 10;
+                break;
+            case 2:
+                editor.putBoolean("MisicForest", true);
+                karmaShop = karmaShop+50;
+                karma = karma - 50;
+                break;
+        }
+        editor.putInt("KarmaShop", karmaShop);
+        editor.putInt("Karma", karma);
+        editor.apply();
+
     }
 
 
