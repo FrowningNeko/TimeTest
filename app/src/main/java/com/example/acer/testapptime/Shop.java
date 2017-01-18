@@ -34,7 +34,7 @@ public class Shop extends Activity {
         spShop = getSharedPreferences(SP_SETTING, Context.MODE_PRIVATE);
         karma = spShop.getInt(SP_KARMA, 50);
         inspecShop = spShop.getBoolean("DoubleCoin", false);
-        inscecMusicForest = spShop.getBoolean("MisicForest", false);
+        inscecMusicForest = spShop.getBoolean("MusicForest", false);
         levelKarma = (TextView)findViewById(R.id.karma_level);
         levelKarma.setText(String.valueOf(karma));
 
@@ -51,7 +51,7 @@ public class Shop extends Activity {
         shopDoubleCoin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(karma >65){
+                if(karma >=65){
                 shopDoubleCoin.setEnabled(false);
                 shopDoubleCoin.setText("✓");
                 int numberShop;
@@ -70,9 +70,9 @@ public class Shop extends Activity {
         shopMusicForest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(karma > 80){
+                if(karma >= 80){
                     shopMusicForest.setEnabled(false);
-                    shopDoubleCoin.setText("✓");
+                    shopMusicForest.setText("✓");
                     int numberShop = 2;
                     shopSave(numberShop);
                     levelKarma.setText(String.valueOf(karma));
@@ -96,7 +96,7 @@ public class Shop extends Activity {
                 karma = karma - 10;
                 break;
             case 2:
-                editor.putBoolean("MisicForest", true);
+                editor.putBoolean("MusicForest", true);
                 karmaShop = karmaShop+50;
                 karma = karma - 50;
                 break;

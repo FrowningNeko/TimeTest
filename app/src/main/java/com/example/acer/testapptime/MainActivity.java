@@ -38,6 +38,7 @@ public class MainActivity extends Activity {
     static ImageView imageKarma3;
     static ImageView imageKarma4;
     Button shop;
+    Boolean inspecShopMusic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,6 @@ public class MainActivity extends Activity {
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         progressBar.setProgress(0);
-        sharedPreferences = getSharedPreferences("Setting", Context.MODE_PRIVATE);
         level.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +136,7 @@ public class MainActivity extends Activity {
                 MyTimer.flag = 1;
                 MyTimer myTimer = new MyTimer();
                 myTimer.TimerScoreFailCancel();
+                    MyTimer.mHandler.sendEmptyMessage(10);
                 Tools();
             }
         });

@@ -8,6 +8,8 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
+import android.os.Debug;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -55,6 +57,7 @@ public class MyTimer extends Service {
     Timer timerFail;
     PowerManager.WakeLock wakeLock;
     public static int flag;
+    MediaPlayer mediaPlayer;
 
     @Override
     public void onCreate() {
@@ -80,6 +83,14 @@ public class MyTimer extends Service {
                 .setContentIntent(pendingMain);
         notification = mBuilder.build();
         myAlarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        mediaPlayer = MediaPlayer.create(this, R.raw.forest);
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){
+
+            public void onCompletion(MediaPlayer arg0){
+                arg0.start();//Запускаем воспроизведение заново
+            }
+
+        });
        final  MainActivity main = new MainActivity();
         mHandler = new Handler() {
             @Override
@@ -97,7 +108,8 @@ public class MyTimer extends Service {
                     case RELAX_FINAL:
                         inspec = 1;
                         flag = 3;
-                        if(inspecCycle<3){
+                        mediaPlayer.pause();
+                        if(inspecCycle<4){
                             score++;
                             MainActivity.timeMin.setText(":)");
                             switch (score){
@@ -177,6 +189,7 @@ public class MyTimer extends Service {
                         editor2.apply();
                         wakeLock.release();
                         stopForeground(true);
+                        mediaPlayer.stop();
                         break;
                     case 7:
                         timerFail.cancel();
@@ -186,6 +199,13 @@ public class MyTimer extends Service {
                         break;
                     case 9:
                         startService(new Intent(MyTimer.this, CloseApp.class));
+                        break;
+                    case 10:
+                        Boolean inspecMusic = sharedPreferences.getBoolean("MusicForest", false);
+                        if(inspecMusic){
+                        mediaPlayer.start();}
+                        break;
+
             }
             }
         };
@@ -205,12 +225,10 @@ public class MyTimer extends Service {
         if(inspec==1){
             realTime = System.currentTimeMillis();
             myAlarm.set(AlarmManager.RTC_WAKEUP, realTime+timeWork, pIntentRelax);
-            Log.e("Inspec", "Inspec = 1 "+ timeWork);
         }
         else{
             realTime = System.currentTimeMillis();
             myAlarm.set(AlarmManager.RTC_WAKEUP, realTime+timeRelax, pIntentWork);
-            Log.e("Inspec", "Inspec = 2 "+ timeRelax);
         }
         Timer();
     }
@@ -218,7 +236,7 @@ public class MyTimer extends Service {
 
     public void Timer(){
         final long timeEnd;
-        long realTime = SystemClock.elapsedRealtime();
+        long realTime = System.currentTimeMillis();
         if(inspec == 1){
             timeEnd = realTime + timeWork;
             progressBar = timeWork;
@@ -273,6 +291,15 @@ public class MyTimer extends Service {
         timer.cancel();
     }
 
+
+
+    public void musicStart(){
+        mediaPlayer.start();
+    }
+
+    public void musicStop(){
+        mediaPlayer.stop();
+    }
 
 
         @Override
