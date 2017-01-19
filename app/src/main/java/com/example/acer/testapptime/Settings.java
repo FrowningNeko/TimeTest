@@ -1,5 +1,6 @@
 package com.example.acer.testapptime;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
@@ -44,6 +45,13 @@ public class Settings extends PreferenceActivity {
                 return true;
             }
         });
+
+        SharedPreferences sharedPreferences = getSharedPreferences("setting", Context.MODE_PRIVATE);
+        Boolean musicRelsx = sharedPreferences.getBoolean("MusicForest", false);
+
+        Preference customMusic = (Preference)findPreference("listRelaxMusic");
+        if(!musicRelsx){
+        customMusic.setEnabled(false);}
     }
 }
 

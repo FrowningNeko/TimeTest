@@ -16,20 +16,23 @@
                 android:defaultValue="5"
                 android:entries="@array/listRelaxArray"
                 android:entryValues="@array/listRelaxValues" />
-            <CheckBoxPreference
-                android:title="Ручной переход от отдыха к работе"
-                android:defaultValue="false"
-                android:key="workAuto" />
+            <ListPreference
+                android:title="Музыка для отдыха"
+                android:summary="Музыка, которая будет играть во время отдыха"
+                android:key="listRelaxMusic"
+                android:defaultValue="1"
+                android:entries="@array/listRelaxMusicA"
+                android:entryValues="@array/listRelaxMusicV" />
         </PreferenceCategory>
         <PreferenceCategory
             android:title="О приложении">
             <Preference
                 android:title="О приложении"
-                android:summary="This works almost like a button"
+                android:summary="Несколько слов о приложении"
                 android:key="customPref" />
             <Preference
                 android:title="FAQ"
-                android:summary="This works almost like a button"
+                android:summary="Что, зачем, как и почему? Всё тут!"
                 android:key="customFAQ" />
         </PreferenceCategory>
     </PreferenceScreen>

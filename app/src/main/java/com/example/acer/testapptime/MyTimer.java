@@ -9,12 +9,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
-import android.os.Debug;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.PowerManager;
-import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
@@ -83,7 +81,18 @@ public class MyTimer extends Service {
                 .setContentIntent(pendingMain);
         notification = mBuilder.build();
         myAlarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        mediaPlayer = MediaPlayer.create(this, R.raw.forest);
+
+        String strMusic = sharPrefSettings.getString("listRelaxMusic", "1");
+        int b = Integer.parseInt(strMusic);
+        switch (b){
+            case 1:
+                mediaPlayer = MediaPlayer.create(this, R.raw.forest);
+                break;
+            case 2:
+                mediaPlayer = MediaPlayer.create(this, R.raw.rain);
+                break;
+        }
+
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){
 
             public void onCompletion(MediaPlayer arg0){
@@ -291,24 +300,11 @@ public class MyTimer extends Service {
         timer.cancel();
     }
 
-
-
-    public void musicStart(){
-        mediaPlayer.start();
-    }
-
-    public void musicStop(){
-        mediaPlayer.stop();
-    }
-
-
         @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
-
-
 
     @Override
     public void onDestroy()

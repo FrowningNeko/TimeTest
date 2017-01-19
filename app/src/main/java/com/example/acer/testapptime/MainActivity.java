@@ -6,11 +6,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.PowerManager;
-import android.os.SystemClock;
-import android.preference.ListPreference;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Message;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +18,9 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+
 import java.util.Random;
+import android.os.Handler;
 
 public class MainActivity extends Activity {
 
@@ -38,7 +36,7 @@ public class MainActivity extends Activity {
     static ImageView imageKarma3;
     static ImageView imageKarma4;
     Button shop;
-    Boolean inspecShopMusic;
+    static public Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +73,31 @@ public class MainActivity extends Activity {
         });
 
         Tools();
-    }
+
+        mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+
+                switch (msg.what){
+                    case 1:
+                        startService(new Intent(MainActivity.this, MyTimer.class));
+                        MyTimer.flag = 1;
+                        Tools();
+                        break;
+                    case 2:
+                        MyTimer.mHandler.sendEmptyMessage(9);
+                        MyTimer.flag = 0;
+                        Tools();
+                        break;
+
+                    case 3:
+                        MyTimer.mHandler.sendEmptyMessage(8);
+                        MyTimer.flag = 1;
+                        Tools();
+                        break;
+                }
+            }
+        };}
 
     public void Tools(){
         switch (MyTimer.flag){
@@ -97,9 +119,7 @@ public class MainActivity extends Activity {
         btMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startService(new Intent(MainActivity.this, MyTimer.class));
-                MyTimer.flag = 1;
-                Tools();
+                MainActivity.mHandler.sendEmptyMessage(1);
             }
         });
     }
@@ -108,9 +128,7 @@ public class MainActivity extends Activity {
         btMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyTimer.mHandler.sendEmptyMessage(9);
-                MyTimer.flag = 0;
-                Tools();
+                MainActivity.mHandler.sendEmptyMessage(2);
             }
         });
     }
@@ -120,9 +138,7 @@ public class MainActivity extends Activity {
         btMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MyTimer.mHandler.sendEmptyMessage(8);
-                MyTimer.flag = 1;
-                Tools();
+                MainActivity.mHandler.sendEmptyMessage(3);
             }
         });
     }
