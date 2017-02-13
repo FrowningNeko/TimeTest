@@ -31,8 +31,8 @@
                 android:summary="Несколько слов о приложении"
                 android:key="customPref" />
             <Preference
-                android:title="FAQ"
-                android:summary="Что, зачем, как и почему? Всё тут!"
+                android:title="FAQ (в разработке)"
+                android:summary="Что это? Где я? В чём смысл жизни? Всё тут!"
                 android:key="customFAQ" />
         </PreferenceCategory>
     </PreferenceScreen>

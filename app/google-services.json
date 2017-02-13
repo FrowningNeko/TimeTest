@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "330876546563",
+    "firebase_url": "https://karma-timer-ba94f.firebaseio.com",
+    "project_id": "karma-timer-ba94f",
+    "storage_bucket": "karma-timer-ba94f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:330876546563:android:9d6e2d42f4516ca1",
+        "android_client_info": {
+          "package_name": "com.exampl.acer.testapptime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "330876546563-0257h4iarkogp1psq2q2dn7jajmgireq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.exampl.acer.testapptime",
+            "certificate_hash": "DA39A3EE5E6B4B0D3255BFEF95601890AFD80709"
+          }
+        },
+        {
+          "client_id": "330876546563-p33ga8alfchnrtgodd60g67gcupqjujp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMobNzyymp384GqwvrlcHirs_0dm4eKvk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "330876546563-p33ga8alfchnrtgodd60g67gcupqjujp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.acer.testapptime.Shop"
+    tools:context="com.exampl.acer.timernek.Shop"
     android:padding="10dp">
 
     <ScrollView
@@ -27,7 +27,6 @@
                 android:background="#1bff8300"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/scrollView22"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:id="@+id/RL">
@@ -170,7 +169,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Во время отдыха приложение будет проигрывать звуки природы, что поможет быстрее расслабиться и получить от отдыха максимум. "
+            android:text="Открывает доступ к набору расслабляющих звуков, которые будут проигрываться во время отдыха. Можно отключить в настройках приложения."
             android:id="@+id/textView19"
             android:paddingLeft="5dp"
             android:layout_below="@+id/textView18"
@@ -234,85 +233,6 @@
             android:layout_alignParentStart="true" />
         />
     </RelativeLayout>
-            <RelativeLayout
-                android:background="#1bff8300"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/test"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp">
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:text="Купить"
-                    android:id="@+id/button22"
-                    android:background="@color/orange"
-                    android:layout_above="@+id/textView1922"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignWithParentIfMissing="false"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Заголовок"
-                    android:textSize="20dp"
-                    android:gravity="center_horizontal"
-                    android:id="@+id/textView1822"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:paddingLeft="10dp"
-                    android:layout_alignWithParentIfMissing="false" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Тут могла быть Ваша реклама...Ну и описание товара, агадаконечно"
-                    android:id="@+id/textView1922"
-                    android:paddingLeft="5dp"
-                    android:layout_below="@+id/textView1822"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:paddingTop="5dp"
-                    android:layout_toLeftOf="@+id/button22"
-                    android:layout_toStartOf="@+id/button22" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Стоимость: "
-                    android:id="@+id/textView20"
-                    android:paddingTop="5dp"
-                    android:layout_below="@+id/textView1922"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="30"
-                    android:id="@+id/textView23"
-                    android:layout_alignBottom="@+id/textView20"
-                    android:layout_toRightOf="@+id/textView20"
-                    android:layout_toEndOf="@+id/textView20" />
-
-                <ImageView
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:id="@+id/imageView3"
-                    android:background="@drawable/karma"
-                    android:layout_alignParentBottom="true"
-                    android:layout_toRightOf="@+id/textView23"
-                    android:layout_toEndOf="@+id/textView23" />
-
-            </RelativeLayout>
-
         </RelativeLayout>
     </ScrollView>
 
