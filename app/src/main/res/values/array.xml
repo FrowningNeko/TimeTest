@@ -33,7 +33,7 @@
     </string-array>
 
     <string-array name="listWorkValues">
-        <item>10</item>
+        <item>1</item>
         <item>25</item>
         <item>45</item>
         <item>60</item>
@@ -48,7 +48,7 @@
     </string-array>
 
     <string-array name="listRelaxValues">
-        <item>5</item>
+        <item>2</item>
         <item>5</item>
         <item>10</item>
         <item>15</item>

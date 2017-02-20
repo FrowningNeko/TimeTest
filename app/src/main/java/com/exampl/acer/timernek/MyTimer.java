@@ -121,7 +121,7 @@ public class MyTimer extends Service {
                     case RELAX_FINAL:
                         inspec = 1;
                         flag = 3;
-                        mediaPlayer.pause();
+                        if(b>0){mediaPlayer.pause();}
                         if(inspecCycle<4){
                             score++;
                             MainActivity.timeMin.setText(":)");
@@ -190,7 +190,7 @@ public class MyTimer extends Service {
                         editor.apply();
                         score = 0;
                         break;
-                    case EXIT: // Exit
+                    case EXIT:
                         MainActivity.timeMin.setText(":)");
                         int karma2 = sharedPreferences.getInt("Karma", 50);
                         karma2 = karma2 -5;
@@ -267,7 +267,7 @@ public class MyTimer extends Service {
             public void run() {
                 if(time>0) {
                     time = time - 1000;
-                    i = (int)(100-(time*100/progressBar));//Получаем оставшийся процент для Progress Bar
+                    i = (int)(100-(time*100/progressBar));
                     mHandler.sendEmptyMessage(1);
                 }
                 else{
