@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="Tips">
-        <item>Какой прекрасный день, чтобы заняться работой!</item>
-        <item>Нельзя вечно ждать подходящего момента, нужно просто создать его.</item>
-        <item>Цель включает зажигание, запускает двигатель и питает наши души.</item>
-        <item>Большинство людей намного сильнее, чем они думают, они просто забывают иногда в это верить.</item>
-        <item>Самое высокое наслаждение — сделать то, чего, по мнению других вы не можете сделать</item>
-        <item>Если вам что-то по душе, то вы можете сделать это прибыльным занятием независимо от сферы вашей деятельности</item>
-        <item>Тут должен быть мотивирующий текст, но он пропал. Не паникуйте, текст уже объявлен в розыск!</item>
-        <item>Если вы на самом деле хотите что-то сделать, то вы найдете решение. Если вы не очень-то и хотите, то найдете оправдание</item>
-        <item>Лень что-нибудь сделать? Попробуй просто начать, со временем тебя это затянет.</item>
-        <item>Лучше маленькое дело, чем большой план без действия</item>
-        <item>Лучше маленькое дело, чем большой план без действия</item>
-        <item>Лучше маленькое дело, чем большой план без действия</item>
-        <item>Пройдет 3–15 лет, и ты будешь больше сожалеть о том, чего не сделал, чем о том, что сделал не так.</item>
-        <item>Мы сами придумываем себе проблемы, преграды, комплексы и рамки. Освободи себя, вдохни жизнь и пойми, что ты можешь все.</item>
-        <item>Никогда не рассказывай людям о своих планах. Просто бери и делай. Пусть они удивляются от результатов, а не от болтовни.</item>
-        <item>Главное помнить о том, что любые падения готовят нас к новым взлётам.</item>
-        <item>Только поступки что-то меняют. Если нет поступков, то все остается прежним.</item>
-        <item>Хорошая идея без действий – ничто.</item>
-        <item>Хорошая идея без действий – ничто.</item>
-        <item>Хорошая идея без действий – ничто.</item>
-        <item>Если ты не решишься на это сегодня, завтра будет таким же, как и вчера. Жми уже на кнопку внизу и начинай работать!</item>
+        <item>You can have everything you want in life if you just help enough people get what they want in life.</item>
+        <item>If I have the belief that I can do it, I shall surely acquire the capacity to do it even if I may not have it at the beginning.</item>
+        <item>It takes courage to grow up and become who you really are.</item>
+        <item>Happiness is not something you postpone for the future; it is something you design for the present.</item>
+        <item>A difficult time can be more readily endured if we retain the conviction that our existence holds a purpose – a cause to pursue, a person to love, a goal to achieve.</item>
+        <item>I realized early on that success was tied to not giving up. Most people in this business gave up and went on to other things. If you simply didn’t give up, you would outlast the people who came in on the bus with you.</item>
+        <item>We all have dreams. But in order to make dreams come into reality, it takes an awful lot of determination, dedication, self-discipline, and effort.</item>
+        <item>So long as there is breath in me, that long I will persist. For now I know one of the greatest principles on success; if I persist long enough I will win</item>
+        <item>Show me a person who doesn’t make mistakes and I’ll show you a person who doesn’t do anything.</item>
+        <item>Today I will do what others won’t, so tomorrow I can accomplish what others can’t</item>
+        <item>Today I will do what others won’t, so tomorrow I can accomplish what others can’t</item>
+        <item>Today I will do what others won’t, so tomorrow I can accomplish what others can’t</item>
+        <item>The content of your character is your choice. Day by day, what you choose, what you think and what you do is who you become.</item>
+        <item>Losers live in the past. Winners learn from the past and enjoy working in the present toward the future.</item>
+        <item>Learn to appreciate what you have, before time makes you appreciate what you had.</item>
+        <item>I fear not the man who has practiced 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times.</item>
+        <item>Often the difference between a successful person and a failure is not one has better abilities or ideas, but the courage that one has to bet on one’s ideas, to take a calculated risk – and to act</item>
+        <item>Too many people are thinking the grass is greener on the other side of the fence, when they ought to just water the grass they are standing on.</item>
+        <item>Too many people are thinking the grass is greener on the other side of the fence, when they ought to just water the grass they are standing on.</item>
+        <item>Too many people are thinking the grass is greener on the other side of the fence, when they ought to just water the grass they are standing on.</item>
+        <item>A life spent making mistakes is not only more honorable but more useful than a life spent doing nothing</item>
+        <item>The starting point of all achievement is desire. Keep this constantly in mind. Weak desires bring weak results, just as a small fire makes a small amount of heat</item>
+        <item>Don’t wait for something big to occur. Start where you are, with what you have, and that will always lead you into something greater.</item>
+        <item>Ninety-nine percent of failures come from people who have the habit of making excuses.</item>
+        <item>When the world says, ‘Give up’, Hope whispers, \`Try it one more time.\`</item>
+        <item>I am grateful for all of my problems. After each one was overcome, I became stronger and more able to meet those that were still to come. I grew in all my difficulties.</item>
     </string-array>
 
     <string-array name="listWorkArray">
-        <item>10 минут</item>
-        <item>25 минут</item>
-        <item>45 минут</item>
-        <item>1 час</item>
-        <item>1 час и 30 минут</item>
+        <item>10 minutes</item>
+        <item>25 minutes</item>
+        <item>45 minutes</item>
+        <item>1 hour</item>
+        <item>1 hour и 30 minutes</item>
     </string-array>
 
     <string-array name="listWorkValues">
@@ -40,11 +45,11 @@
         <item>90</item>
     </string-array>
     <string-array name="listRelaxArray">
-        <item>2 минуты</item>
-        <item>5 минут</item>
-        <item>10 минут</item>
-        <item>15 минут</item>
-        <item>30 минут</item>
+        <item>2 minutes</item>
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>15 minutes</item>
+        <item>30 minutes</item>
     </string-array>
 
     <string-array name="listRelaxValues">
@@ -55,9 +60,9 @@
         <item>30</item>
     </string-array>
     <string-array name="listRelaxMusicA">
-        <item>Выкл</item>
-        <item>Звуки леса</item>
-        <item>Звуки дождя</item>
+        <item>Off</item>
+        <item>Sounds of the forest</item>
+        <item>Sounds of rain</item>
     </string-array>
 
     <string-array name="listRelaxMusicV">

@@ -9,7 +9,6 @@ import android.os.Vibrator;
 import android.support.v7.app.NotificationCompat;
 
 public class AlarumWork extends BroadcastReceiver {
-    Context context;
     public void onReceive(Context context, Intent intent) {
         Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(1000);
@@ -27,7 +26,7 @@ public class AlarumWork extends BroadcastReceiver {
         mNotifyManager.cancel(777);
         mBuilder.setContentTitle("Karma Timer")
                 .setSmallIcon(R.drawable.ic);
-        mBuilder.addAction(0, "Остановить", pIntentClose);
+        mBuilder.addAction(0, context.getText(R.string.bt_stop), pIntentClose);
         MyTimer.mHandler.sendEmptyMessage(3);
     }
 

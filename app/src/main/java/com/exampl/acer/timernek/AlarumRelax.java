@@ -31,13 +31,13 @@ public class AlarumRelax extends BroadcastReceiver {
         mNotifyManager.cancel(777);
         mBuilder.setContentTitle("Karma Timer")
                 .setSmallIcon(R.drawable.ic)
-                .addAction(0, "Начать отдых", pIntentRelax)
-                .addAction(0, "Остановить", pIntentClose);
+                .addAction(0, context.getResources().getText(R.string.st_relax), pIntentRelax)
+                .addAction(0, context.getResources().getText(R.string.st_relax), pIntentClose);
         if (MyTimer.inspecCycle < 4) {
-            mBuilder.setContentText("Пора отдохнуть!");
+            mBuilder.setContentText(context.getResources().getText(R.string.notif_relax));
             mNotifyManager.notify(778, mBuilder.build());
         } else {
-            mBuilder.setContentText("Поздравляю! Вы получили новый уровень!");
+            mBuilder.setContentText(context.getResources().getText(R.string.notif_new_level));
             mNotifyManager.notify(778, mBuilder.build());
         }
         MyTimer.mHandler.sendEmptyMessage(2);

@@ -39,7 +39,6 @@ public class MyTimer extends Service {
     PendingIntent pendingMain;
     public static final String SP_SETTING = "setting";
     public static final String SP_SCORE = "score";
-    public static final String SP_LVL = "LVL";
     static long time = 10000;
     long timeWork;
     long timeRelax;
@@ -60,7 +59,7 @@ public class MyTimer extends Service {
 
     @Override
     public void onCreate() {
-        Toast.makeText(this, "Игра началась!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getText(R.string.app_start), Toast.LENGTH_SHORT).show();
         Intent intentRelax = new Intent(MyTimer.this, AlarumRelax.class);
         pIntentRelax = PendingIntent.getBroadcast(MyTimer.this, 0, intentRelax, PendingIntent.FLAG_UPDATE_CURRENT);
         Intent intentWork = new Intent(MyTimer.this, AlarumWork.class);
@@ -77,8 +76,8 @@ public class MyTimer extends Service {
         mBuilder = new NotificationCompat.Builder(MyTimer.this);
         mBuilder.setContentTitle("Karma Timer")
                 .setSmallIcon(R.drawable.ic_launcher)
-                .setContentText("Мяу")
-                .addAction(0, "Остановить", pIntent2)
+                .setContentText("Meow")
+                .addAction(0, getText(R.string.bt_stop), pIntent2)
                 .setContentIntent(pendingMain);
         notification = mBuilder.build();
         myAlarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
@@ -147,7 +146,7 @@ public class MyTimer extends Service {
                         else{
                             levelUp();
                             MainActivity.imageKarma4.setImageResource(R.drawable.karma);
-                            mBuilder.setContentText("Поздравляю, вы получили новый уровень!");
+                            mBuilder.setContentText(getText(R.string.notif_new_level));
                             MainActivity.timeMin.setText("Ура!");
                             stopForeground(true);
                             mNotifyManager.cancel(778);
@@ -158,20 +157,20 @@ public class MyTimer extends Service {
                         break;
                     case TIMER_WORK:
                         if (MainActivity.timeMin != null) {
-                            MainActivity.timeMin.setText("" + ((time/ 60000)+1)+" мин");
+                            MainActivity.timeMin.setText("" + ((time/ 60000)+1)+ " "+ getText(R.string.notif_time_relax_2));
 
                         }
                         MainActivity.progressBar.setProgress(i);
                         if(inspec==1){
-                            mBuilder.setContentText("До перерыва осталось " +(((MyTimer.time)/60000)+1)+" мин");
+                            mBuilder.setContentText("" + getText(R.string.notif_time_relax_1) +" "+(((MyTimer.time)/60000)+1)+ " "+getText(R.string.notif_time_relax_2));
                         }
                         else{
-                            mBuilder.setContentText("Через " +(((MyTimer.time)/60000)+1)+" мин снова работать :)");
+                            mBuilder.setContentText(""+getText(R.string.notif_time_1) +" "+(((MyTimer.time)/60000)+1) + " "+getText(R.string.notif_time_1));
                         }
                         mNotifyManager.notify(778, mBuilder.build());
                         break;
                     case SCORE_FAIL:// Сгорание очков
-                        mBuilder.setContentText("Увы, очки сгорели :(");
+                        mBuilder.setContentText(getText(R.string.score_fail));
                         stopForeground(true);
                         mNotifyManager.cancel(778);
                         mNotifyManager.notify(777, mBuilder.build());
@@ -180,9 +179,10 @@ public class MyTimer extends Service {
                         MainActivity.imageKarma3.setImageResource(R.drawable.karma_null);
                         MainActivity.imageKarma4.setImageResource(R.drawable.karma_null);
                         int karma = sharedPreferences.getInt("Karma", 50);
-                        int karmaFail = sharedPreferences.getInt("karmaFail", 0);
+                        int karmaFail = sharedPreferences.getInt("KarmaFail", 0);
                         karmaFail = karmaFail+5;
-                        karma = karma -5;
+                        if(karma > 5) karma = karma -5;
+                        else karma = 0;
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putInt("Karma", karma);
                         editor.putInt("KarmaFail", karmaFail);
@@ -193,8 +193,9 @@ public class MyTimer extends Service {
                     case EXIT:
                         MainActivity.timeMin.setText(":)");
                         int karma2 = sharedPreferences.getInt("Karma", 50);
-                        karma2 = karma2 -5;
-                        int karmaFail2 = sharedPreferences.getInt("karmaFail", 0);
+                        if(karma2 > 5) karma2 = karma2 -5;
+                        else karma2 = 0;
+                        int karmaFail2 = sharedPreferences.getInt("KarmaFail", 0);
                         karmaFail2 = karmaFail2+5;
                         SharedPreferences.Editor editor2 = sharedPreferences.edit();
                         editor2.putInt("Karma", karma2);
@@ -279,10 +280,7 @@ public class MyTimer extends Service {
 
 
     public void levelUp(){
-        int lvl;
-        lvl = sharedPreferences.getInt(SP_LVL, 1);
         inspecCycle = 0;
-        lvl++;
         int karma = sharedPreferences.getInt("Karma", 50);
         Boolean doubleCoin = sharedPreferences.getBoolean("DoubleCoin", false);
         if(doubleCoin){
@@ -295,10 +293,9 @@ public class MyTimer extends Service {
             karma = karma+10;
         }
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putInt(SP_LVL, lvl);
         edit.putInt("Karma", karma);
         edit.apply();
-        Toast.makeText(this, "Вы получили новый уровень!",
+        Toast.makeText(this, getText(R.string.notif_new_level),
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -316,7 +313,7 @@ public class MyTimer extends Service {
     public void onDestroy()
     {
         mHandler.sendEmptyMessage(6);
-        Toast.makeText(this, "Таймер остановлен",
+        Toast.makeText(this, getText(R.string.toast_timer_stop),
                 Toast.LENGTH_SHORT).show();
 
         super.onDestroy();

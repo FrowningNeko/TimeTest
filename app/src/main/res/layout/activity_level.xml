@@ -10,12 +10,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Заработано кармы: "
-        android:id="@+id/textView9"
+        android:text="@string/rank"
+        android:id="@+id/rank"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:paddingLeft="10dp"
         android:layout_below="@+id/progressBar" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/rank_new_1"
+        android:id="@+id/rank_number"
+        android:layout_alignBaseline="@+id/rank"
+        android:layout_alignBottom="@+id/rank"
+        android:layout_toRightOf="@+id/rank"
+        android:layout_toEndOf="@+id/rank" />
+
     <TextView
         android:text="999"
         android:layout_width="wrap_content"
@@ -29,23 +40,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView10"
-        android:layout_alignBaseline="@+id/textView9"
-        android:layout_alignBottom="@+id/textView9"
-        android:layout_toRightOf="@+id/textView9"
-        android:layout_toEndOf="@+id/textView9" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Кармы сгорело: "
+        android:text="@string/karma_fail"
         android:id="@+id/textView11"
         android:paddingLeft="10dp"
-        android:layout_alignTop="@+id/textView12"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+
+        android:layout_below="@+id/rank"/>
 
     <ImageView
         android:layout_width="50dp"
@@ -77,12 +76,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="999"
         android:id="@+id/textView12"
-        android:layout_below="@+id/textView9"
         android:layout_toRightOf="@+id/textView11"
-        android:layout_toEndOf="@+id/textView11" />
+        android:layout_alignTop="@+id/textView11"/>
 
     <TextView
-        android:text="Потрачено на покупки: "
+        android:text="@string/karma_shop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView11"
@@ -135,22 +133,11 @@
         android:layout_toEndOf="@+id/textView12"
         android:layout_marginBottom="3dp"/>
 
-    <ImageButton
-        android:layout_width="22dp"
-        android:layout_height="22dp"
-        android:background="@drawable/info"
-        android:id="@+id/infoScore"
-        android:layout_alignBottom="@+id/textView10"
-        android:layout_toRightOf="@+id/textView10"
-        android:layout_toEndOf="@+id/textView10"
-        android:layout_marginBottom="3dp"/>
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="@string/button_karma"
         android:background="@color/orange"
-        android:layout_weight="1.1"
         android:id="@+id/karma_ad"
         android:textSize="15sp"
         android:layout_alignParentBottom="true"

@@ -111,7 +111,7 @@ public class MainActivity extends Activity {
     }
 
     public void ButtonStart(){
-        btMain.setText("Старт");
+        btMain.setText(getText(R.string.start));
         btMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -120,7 +120,7 @@ public class MainActivity extends Activity {
         });
     }
     public void ButtonStop(){
-        btMain.setText("Стоп");
+        btMain.setText(getText(R.string.bt_stop));
         btMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +130,7 @@ public class MainActivity extends Activity {
     }
 
     public void ButtonWork(){
-        btMain.setText("Приступить к работе");
+        btMain.setText(getText(R.string.bt_main_work));
         btMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,7 +140,7 @@ public class MainActivity extends Activity {
     }
 
     public void ButtonRelax(){
-        btMain.setText("Начать отдых");
+        btMain.setText(getText(R.string.bt_main_relax));
         btMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

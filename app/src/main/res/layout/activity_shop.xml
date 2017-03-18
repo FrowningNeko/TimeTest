@@ -7,16 +7,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.exampl.acer.timernek.Shop"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:paddingLeft="2dp">
+
+    <TextView
+        android:text="@string/lvl_karma"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/scrollView"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:id="@+id/karma_level" />
+
+    <ImageView
+        android:layout_width="17dp"
+        android:layout_height="17dp"
+        android:background="@drawable/karma"
+        android:layout_above="@+id/scrollView"
+        android:layout_toRightOf="@+id/karma_level"
+        android:layout_toEndOf="@+id/karma_level"
+        android:id="@+id/imageView5" />
 
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/scrollView"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="5dp">
+        android:layout_below="@+id/textView3">
         <RelativeLayout
             android:background="#1bff8300"
             android:layout_width="match_parent"
@@ -34,7 +58,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
-                    android:text="Купить"
+                    android:text="@string/buy"
                     android:id="@+id/shop1"
                     android:background="@color/orange"
                     android:layout_alignWithParentIfMissing="false"
@@ -48,8 +72,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Двойная ставка!"
-                    android:textSize="20dp"
+                    android:text="@string/double_karma"
+                    android:textSize="20sp"
                     android:gravity="center_horizontal"
                     android:id="@+id/textView21"
                     android:layout_alignParentTop="true"
@@ -61,7 +85,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Хватит ли тебе смелости поставить на кон свои монеты, чтобы получить в 2 раза больше? Победителю - всё, проигравшему - ничего!"
+                    android:text="@string/double_text"
                     android:id="@+id/textView22"
                     android:paddingLeft="5dp"
                     android:layout_below="@+id/textView21"
@@ -92,36 +116,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Стоимость: "
+                    android:text="@string/cost"
                     android:id="@+id/pay"
                     android:layout_below="@+id/textView22"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:paddingLeft="5dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Необходимо кармы: "
-                    android:id="@+id/pay2"
-                    android:layout_below="@+id/pay"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:paddingLeft="5dp" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="65"
-                    android:id="@+id/txkarma"
-                    android:layout_below="@+id/pay"
-                    android:layout_toRightOf="@+id/pay2"
-                    android:layout_toEndOf="@+id/pay2" />
-                <ImageView
-                    android:layout_width="17dp"
-                    android:layout_height="17dp"
-                    android:id="@+id/imkarma"
-                    android:background="@drawable/karma"
-                    android:layout_toRightOf="@+id/txkarma"
-                    android:layout_alignBottom="@+id/txkarma"/>
 
             </RelativeLayout>
 
@@ -140,7 +140,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:text="Купить"
+            android:text="@string/buy"
             android:id="@+id/shop2"
             android:background="@color/orange"
             android:layout_above="@+id/textView19"
@@ -156,8 +156,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Звуки природы"
-            android:textSize="20dp"
+            android:text="@string/music_forrest"
+            android:textSize="20sp"
             android:gravity="center_horizontal"
             android:id="@+id/textView18"
             android:layout_alignParentTop="true"
@@ -169,7 +169,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Открывает доступ к набору расслабляющих звуков, которые будут проигрываться во время отдыха. Можно отключить в настройках приложения."
+            android:text="@string/forest_text"
             android:id="@+id/textView19"
             android:paddingLeft="5dp"
             android:layout_below="@+id/textView18"
@@ -191,40 +191,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="50"
+            android:text="75"
             android:id="@+id/textView7"
             android:layout_alignBottom="@+id/textView6"
             android:layout_toRightOf="@+id/textView6"
             android:layout_toEndOf="@+id/textView6"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Необходимо кармы: "
-            android:id="@+id/pay3"
-            android:layout_below="@+id/textView6"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:paddingLeft="5dp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="80"
-            android:id="@+id/txkarma2"
-            android:layout_below="@+id/textView6"
-            android:layout_toRightOf="@+id/pay3"
-            android:layout_toEndOf="@+id/pay3" />
-        <ImageView
-            android:layout_width="17dp"
-            android:layout_height="17dp"
-            android:id="@+id/imkarma2"
-            android:background="@drawable/karma"
-            android:layout_toRightOf="@+id/txkarma2"
-            android:layout_alignBottom="@+id/txkarma2"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Стоимость: "
+            android:text="@string/cost"
             android:paddingLeft="5dp"
             android:id="@+id/textView6"
             android:paddingTop="5dp"
@@ -233,33 +209,172 @@
             android:layout_alignParentStart="true" />
         />
     </RelativeLayout>
+            <RelativeLayout
+                android:background="#1bff8300"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/test"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:id="@+id/title_3">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="@string/buy"
+                    android:id="@+id/shop3"
+                    android:background="@color/orange"
+                    android:layout_above="@+id/textView19"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_lord_2"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/text_tittle_3"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:paddingLeft="10dp"
+                    android:layout_alignWithParentIfMissing="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_lord"
+                    android:id="@+id/txkarma3"
+                    android:paddingLeft="5dp"
+                    android:layout_below="@+id/text_tittle_3"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:paddingTop="5dp"
+                    android:layout_toStartOf="@+id/shop3"
+                    android:layout_toLeftOf="@+id/shop3" />
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:id="@+id/img_karma_3"
+                    android:background="@drawable/karma"
+                    android:layout_alignBottom="@+id/tx_cost_3"
+                    android:layout_toRightOf="@+id/tx_3_3"
+                    android:layout_toEndOf="@+id/tx_3_3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10"
+                    android:id="@+id/tx_3_3"
+                    android:layout_alignBottom="@+id/tx_cost_3"
+                    android:layout_toRightOf="@+id/tx_cost_3"
+                    android:layout_toEndOf="@+id/tx_cost_3"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cost"
+                    android:paddingLeft="5dp"
+                    android:id="@+id/tx_cost_3"
+                    android:paddingTop="5dp"
+                    android:layout_below="@+id/txkarma3"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                />
+            </RelativeLayout>
+            <RelativeLayout
+                android:background="#1bff8300"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title_3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp"
+                android:id="@+id/title_4">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="@string/buy"
+                    android:id="@+id/shop4"
+                    android:background="@color/orange"
+                    android:layout_above="@+id/textView19"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_shop_3"
+                    android:textSize="20sp"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/text_tittle_4"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:paddingLeft="10dp"
+                    android:layout_alignWithParentIfMissing="false" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_ju"
+                    android:id="@+id/txkarma4"
+                    android:paddingLeft="5dp"
+                    android:layout_below="@+id/text_tittle_4"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:paddingTop="5dp"
+                    android:layout_toStartOf="@+id/shop4"
+                    android:layout_toLeftOf="@+id/shop4" />
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:id="@+id/img_karma_4"
+                    android:background="@drawable/karma"
+                    android:layout_alignBottom="@+id/tx_cost_4"
+                    android:layout_toRightOf="@+id/tx_3_4"
+                    android:layout_toEndOf="@+id/tx_3_4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15"
+                    android:id="@+id/tx_3_4"
+                    android:layout_alignBottom="@+id/tx_cost_4"
+                    android:layout_toRightOf="@+id/tx_cost_4"
+                    android:layout_toEndOf="@+id/tx_cost_4"/>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cost"
+                    android:paddingLeft="5dp"
+                    android:id="@+id/tx_cost_4"
+                    android:paddingTop="5dp"
+                    android:layout_below="@+id/txkarma4"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true" />
+                />
+            </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
-
-    <TextView
-        android:text="Уровень вашей кармы: "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="000"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/scrollView"
-        android:layout_toRightOf="@+id/textView3"
-        android:layout_toEndOf="@+id/textView3"
-        android:id="@+id/karma_level" />
-
-    <ImageView
-        android:layout_width="17dp"
-        android:layout_height="17dp"
-        android:background="@drawable/karma"
-        android:layout_above="@+id/scrollView"
-        android:layout_toRightOf="@+id/karma_level"
-        android:layout_toEndOf="@+id/karma_level"
-        android:id="@+id/imageView5" />
 
 </RelativeLayout>

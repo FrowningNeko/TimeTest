@@ -41,7 +41,7 @@ public class Settings extends PreferenceActivity {
         Preference customMusic = (Preference)findPreference("listRelaxMusic");
         if(!musicRelsx){
         customMusic.setEnabled(false);
-        customMusic.setSummary("Музыка, которая будет играть во время отдыха. Можно купить в Магазине за карму.");}
+        customMusic.setSummary(getText(R.string.settings_music));}
         Preference faq = (Preference)findPreference("customFAQ");
         faq.setEnabled(false);
     }

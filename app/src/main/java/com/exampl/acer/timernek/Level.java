@@ -22,7 +22,6 @@ import com.google.android.gms.ads.InterstitialAd;
 
 public class Level extends Activity {
 
-    TextView tvScore;
     TextView tvScoreFail;
     TextView tvKarma;
     TextView tvKarmaShop;
@@ -34,7 +33,6 @@ public class Level extends Activity {
     long oldTime;
     ImageView imageKarma;
     ImageView backMob;
-    ImageButton imgInfoScore;
     ImageButton imgInfoShop;
     ImageButton imgScoreFail;
     Button bt;
@@ -53,14 +51,13 @@ public class Level extends Activity {
         setContentView(R.layout.activity_level);
 
 
-        tvScore = (TextView)findViewById(R.id.textView10);
         tvScoreFail = (TextView)findViewById(R.id.textView12);
         tvKarma = (TextView)findViewById(R.id.karma);
+        TextView rank = (TextView)findViewById(R.id.rank_number);
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         progressBarAdd = (ProgressBar)findViewById(R.id.progressBarAdd);
         tvKarmaShop = (TextView)findViewById(R.id.karmaShop);
         imageKarma = (ImageView) findViewById(R.id.imageView7);
-        imgInfoScore = (ImageButton)findViewById(R.id.infoScore);
         imgInfoShop = (ImageButton)findViewById(R.id.infoShop);
         imgScoreFail = (ImageButton)findViewById(R.id.infoScoreFail);
         sharedPreferences = getSharedPreferences(SP_SETTING, Context.MODE_PRIVATE);
@@ -72,24 +69,18 @@ public class Level extends Activity {
         tvKarmaShop.setText(""+karmaShop);
         bt = (Button)findViewById(R.id.karma_ad);
 
-        imgInfoScore.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Level.this, "Карма, которую вы заработали честным трудом", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         imgInfoShop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Level.this, "Карма, которую вы потратили на покупки", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Level.this, getText(R.string.bt_stat_2), Toast.LENGTH_SHORT).show();
             }
         });
 
         imgScoreFail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Level.this, "Сгоревшая карма из-за вашей лени!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Level.this, getText(R.string.bt_stat_3), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -108,16 +99,21 @@ public class Level extends Activity {
         realTime = System.currentTimeMillis();
         oldTime = sharedPreferences.getLong("realTime", realTime);
 
-        if(oldTime>realTime){
-            adsBlock();
-        }
+        if(oldTime>realTime) bt.setVisibility(View.INVISIBLE);
 
-        tvScore.setText(String.valueOf(karma));
         progressBar.setProgress(karma);
         backMob = (ImageView)findViewById(R.id.backMob);
         backMob.setVisibility(View.GONE);
         progressBarAdd.setVisibility(View.GONE);
-
+        int i = sharedPreferences.getInt("title", 0);
+        if(i == 2) rank.setText(getText(R.string.title_shop_3));
+        else if (i == 1) rank.setText(getText(R.string.title_shop_2));
+        else if(karma > 90) rank.setText(getText(R.string.rank_hard));
+        else if(karma > 75) rank.setText(getText(R.string.rank_middle_2));
+        else if (karma > 50) rank.setText(getText(R.string.rank_middle_1));
+        else if (karma > 25) rank.setText(getText(R.string.rank_new_2));
+        else if (karma > 0) rank.setText(getText(R.string.rank_new_1));
+        //Слава костылям!
 
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId("ca-app-pub-2759098232123964/2167740534");
@@ -126,7 +122,7 @@ public class Level extends Activity {
             @Override
             public void onAdClosed() {
                 int karma = sharedPreferences.getInt("Karma", 50);
-                karma = karma + 3;
+                karma = karma + 5;
                 long i = System.currentTimeMillis()+300000;
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putInt("Karma", karma)
@@ -135,7 +131,8 @@ public class Level extends Activity {
                 editor.apply();
                 imageKarma.setImageResource(R.drawable.karma_true);
                 tvKarma.setText(""+karma);
-                adsBlock();
+                bt.setVisibility(View.INVISIBLE);
+                Toast.makeText(Level.this, "Спасибо за помощь разработчику! Реклама станет вновь доступна через 5 минут", Toast.LENGTH_LONG).show();
                 requestNewInterstitial();
             }
         });
@@ -186,7 +183,9 @@ public class Level extends Activity {
                 });
                 threadAddLoading.start();
             }
-        });}
+        });
+
+    }
 
         private void requestNewInterstitial() {
             AdRequest adRequest = new AdRequest.Builder()
@@ -195,12 +194,6 @@ public class Level extends Activity {
             mInterstitialAd.loadAd(adRequest);
         }
 
-    private void adsBlock(){
-        bt.setEnabled(false);
-        realTime = System.currentTimeMillis();
-        oldTime = sharedPreferences.getLong("realTime", realTime);
-        bt.setText("Функция станет доступна вновь через "+((oldTime-realTime)/60000+1)+" мин");
-    }
 
 
     }

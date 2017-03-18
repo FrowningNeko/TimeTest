@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Karma Timer</string>
+    <string name="action_settings">Настройки</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="title_activity_shop">Магазин</string>
+    <string name="title_activity_level">Статистика</string>
+    <string name="title_activity_about">О приложении</string>
+    <string name="title_activity_faq">FAQ</string>
+    <string name="button_karma">Получить +5 к карме \n (реклама)</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2759098232123964~6106915732</string>
+    <string name="about">Karma Timer - это удобный таймер, который поможет вам поднять производительность и выполнять как можно больше дел за короткие сроки. Приложение использует метод "Pomodoro", суть которого заключается в разделении работы на 25 минутные интервалы с короткими промежутками для отдыха.
+
+\n \n
+
+Приложение разрабатывалось исключительно в целях обучения, но я буду очень рад, если оно окажется вам хоть чуточку полезным. Продуктивной вам работы!  </string>
+    <string name="rank">Ваш ранг: </string>
+    <string name="rank_new_1">Ленивец!</string>
+    <string name="rank_new_2">Бездельник</string>
+    <string name="rank_middle_1">Работяга</string>
+    <string name="rank_middle_2">Трудоголик</string>
+    <string name="rank_hard">Гуру планирования</string>
+    <string name="karma_int">Заработано кармы:</string>
+    <string name="karma_fail">Кармы сгорело:</string>
+    <string name="karma_shop">Потрачено на покупки:</string>
+    <string name="shop">Магазин</string>
+    <string name="start">Старт</string>
+    <string name="stat">Статистика</string>
+    <string name="karma_coint">До повышения кармы:</string>
+    <string name="title_shop_2">Повелитель времени</string>
+    <string name="title_shop_3">Ждун</string>
+    <string name="buy">Купить</string>
+    <string name="double_karma">Двойная ставка!</string>
+    <string name="double_text">Хватит ли тебе смелости поставить на кон свою карму, чтобы получить в 2 раза больше? Победителю - всё, проигравшему - ничего!</string>
+    <string name="cost">Стоимость:</string>
+    <string name="need_karma">Необходимо кармы:</string>
+    <string name="need_karma_2">У вас недостаточно кармы. Получить карму можно работая, либо в разделе «Статистика».</string>
+    <string name="music_forrest">Звуки природы</string>
+    <string name="forest_text">Открывает доступ к набору расслабляющих звуков, которые будут проигрываться во время отдыха. Можно отключить в настройках приложения.</string>
+    <string name="lvl_karma">Уровень вашей кармы:</string>
+    <string name="title_ju">Открывает доступ к рангу «Ждун». Почувствуй себя настоящим Ждуном, ожидающим окончания таймера!</string>
+    <string name="title_lord">Открывает доступ к рангу «Повелитель времени».</string>
+    <string name="title_lord_2">Ранг: Повелитель времени</string>
+    <string name="st_relax">Начать отдых</string>
+    <string name="bt_stop">Остановить</string>
+    <string name="notif_relax">Пора отдохнуть!</string>
+    <string name="notif_new_level">Поздравляю! Вы получили новый уровень!</string>
+    <string name="toast_timer_stop">Таймер остановлен</string>
+    <string name="score_fail">Увы, очки сгорели :(</string>
+    <string name="notif_time_1">Осталось  </string>
+    <string name="notif_time_2"> мин до работы</string>
+    <string name="notif_time_relax_1">До перерыва осталось </string>
+    <string name="notif_time_relax_2"> мин</string>
+    <string name="app_start">Игра началась!</string>
+    <string name="buy_true">Покупка совершена!</string>
+    <string name="bt_stat_1"> Карма, которую вы заработали честным трудом</string>
+    <string name="bt_stat_2">Карма, которую вы потратили на покупку.</string>
+    <string name="bt_stat_3">Сгоревшая из-за вашей лени карма! </string>
+    <string name="bt_main_work">Приступить к работе</string>
+    <string name="bt_main_relax">Начать отдых</string>
+    <string name="settings_music">Музыка, которая будет играть во время отдыха. Можно купить в Магазине за карму.</string>
+    <string name="setting_work_timer">Время работы</string>
+    <string name="settimg_relax_timer">Время отдыха</string>
+    <string name="setting_work">Тут вы можете изменить время работы</string>
+    <string name="setting_relax">Тут вы можете изменить время отдыха</string>
+    <string name="music_relax">Музыка во время отдыха</string>
+    <string name="music_relax_2">Музыка, которая будет воспроизводиться во время отдыха</string>
+    <string name="set_about">Несколько слов о приложении</string>
+    <string name="dev_FAQ">FAQ (в разработке)</string>
+    <string name="FAQ_set">Что это? Где я? В чём смысл жизни? Всё тут!</string>
+</resources>

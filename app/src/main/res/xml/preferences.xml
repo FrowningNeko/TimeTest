@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
     <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
         <PreferenceCategory
-            android:title="Настройки">
+            android:title="@string/action_settings">
             <ListPreference
-                android:title="Время работы"
-                android:summary="Тут можно настроить время работы"
+                android:title="@string/setting_work_timer"
+                android:summary="@string/setting_work"
                 android:key="listWork"
                 android:defaultValue="25"
                 android:entries="@array/listWorkArray"
                 android:entryValues="@array/listWorkValues" />
             <ListPreference
-                android:title="Время отдыха"
-                android:summary="Тут можно настроить время отдыха"
+                android:title="@string/settimg_relax_timer"
+                android:summary="@string/settimg_relax_timer"
                 android:key="listRelax"
                 android:defaultValue="5"
                 android:entries="@array/listRelaxArray"
                 android:entryValues="@array/listRelaxValues" />
             <ListPreference
-                android:title="Музыка для отдыха"
-                android:summary="Музыка, которая будет играть во время отдыха"
+                android:title="@string/music_relax"
+                android:summary="@string/music_relax_2"
                 android:key="listRelaxMusic"
                 android:defaultValue="1"
                 android:entries="@array/listRelaxMusicA"
                 android:entryValues="@array/listRelaxMusicV" />
         </PreferenceCategory>
         <PreferenceCategory
-            android:title="О приложении">
+            android:title="@string/title_activity_about">
             <Preference
-                android:title="О приложении"
-                android:summary="Несколько слов о приложении"
+                android:title="@string/title_activity_about"
+                android:summary="@string/set_about"
                 android:key="customPref" />
             <Preference
-                android:title="FAQ (в разработке)"
-                android:summary="Что это? Где я? В чём смысл жизни? Всё тут!"
+                android:title="@string/dev_FAQ"
+                android:summary="@string/FAQ_set"
                 android:key="customFAQ" />
         </PreferenceCategory>
     </PreferenceScreen>
